@@ -2,6 +2,96 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* KeyBox Brand Colors */
+  --keybox-navy: 214 100% 20%;
+  --keybox-yellow: 45 95% 65%;
+  --keybox-blue: 214 95% 55%;
+  --keybox-light-gray: 220 13% 96%;
+  --keybox-dark-gray: 220 9% 46%;
+  
+  /* Primary Colors */
+  --primary: var(--keybox-navy);
+  --primary-foreground: 0 0% 98%;
+  --primary-glow: var(--keybox-blue);
+  
+  /* Secondary Colors */
+  --secondary: var(--keybox-yellow);
+  --secondary-foreground: var(--keybox-navy);
+  
+  /* Accent Colors */
+  --accent: var(--keybox-light-gray);
+  --accent-foreground: var(--keybox-navy);
+  
+  /* Background */
+  --background: 0 0% 100%;
+  --foreground: var(--keybox-navy);
+  
+  /* Card */
+  --card: 0 0% 100%;
+  --card-foreground: var(--keybox-navy);
+  
+  /* Popover */
+  --popover: 0 0% 100%;
+  --popover-foreground: var(--keybox-navy);
+  
+  /* Muted */
+  --muted: var(--keybox-light-gray);
+  --muted-foreground: var(--keybox-dark-gray);
+  
+  /* Border */
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  
+  /* Ring */
+  --ring: var(--keybox-blue);
+  
+  /* Destructive */
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  
+  /* Radius */
+  --radius: 0.5rem;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, hsl(var(--keybox-navy)), hsl(var(--keybox-blue)));
+  --gradient-accent: linear-gradient(135deg, hsl(var(--keybox-yellow)), hsl(var(--keybox-blue)));
+  
+  /* Shadows */
+  --shadow-glow: 0 0 20px hsl(var(--keybox-blue) / 0.3);
+  --shadow-elegant: 0 4px 20px hsl(var(--keybox-navy) / 0.1);
+}
+
+.dark {
+  --background: var(--keybox-navy);
+  --foreground: 0 0% 98%;
+  
+  --card: 214 84% 15%;
+  --card-foreground: 0 0% 98%;
+  
+  --popover: 214 84% 15%;
+  --popover-foreground: 0 0% 98%;
+  
+  --primary: var(--keybox-blue);
+  --primary-foreground: var(--keybox-navy);
+  
+  --secondary: 214 84% 25%;
+  --secondary-foreground: 0 0% 98%;
+  
+  --muted: 214 84% 25%;
+  --muted-foreground: 220 13% 70%;
+  
+  --accent: 214 84% 25%;
+  --accent-foreground: 0 0% 98%;
+  
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  
+  --border: 214 84% 25%;
+  --input: 214 84% 25%;
+  --ring: var(--keybox-blue);
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
