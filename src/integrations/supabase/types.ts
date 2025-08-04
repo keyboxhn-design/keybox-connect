@@ -14,7 +14,158 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      clientes: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          nombre: string
+          numero_cliente: string
+          telefono: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          nombre: string
+          numero_cliente: string
+          telefono?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          nombre?: string
+          numero_cliente?: string
+          telefono?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      mensajes_generados: {
+        Row: {
+          canal: string
+          cliente_id: string | null
+          created_at: string
+          id: string
+          mensaje_final: string
+          plantilla_id: string | null
+        }
+        Insert: {
+          canal: string
+          cliente_id?: string | null
+          created_at?: string
+          id?: string
+          mensaje_final: string
+          plantilla_id?: string | null
+        }
+        Update: {
+          canal?: string
+          cliente_id?: string | null
+          created_at?: string
+          id?: string
+          mensaje_final?: string
+          plantilla_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mensajes_generados_cliente_id_fkey"
+            columns: ["cliente_id"]
+            isOneToOne: false
+            referencedRelation: "clientes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "mensajes_generados_plantilla_id_fkey"
+            columns: ["plantilla_id"]
+            isOneToOne: false
+            referencedRelation: "plantillas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      paquetes: {
+        Row: {
+          cantidad: number
+          cliente_id: string
+          created_at: string
+          esperar_mas_paquetes: boolean | null
+          id: string
+          incluir_domicilio: boolean | null
+          modalidad: string
+          monto: number
+          peso_total: number
+          tipo_domicilio: string | null
+          trackings: string[]
+          updated_at: string
+        }
+        Insert: {
+          cantidad: number
+          cliente_id: string
+          created_at?: string
+          esperar_mas_paquetes?: boolean | null
+          id?: string
+          incluir_domicilio?: boolean | null
+          modalidad: string
+          monto: number
+          peso_total: number
+          tipo_domicilio?: string | null
+          trackings: string[]
+          updated_at?: string
+        }
+        Update: {
+          cantidad?: number
+          cliente_id?: string
+          created_at?: string
+          esperar_mas_paquetes?: boolean | null
+          id?: string
+          incluir_domicilio?: boolean | null
+          modalidad?: string
+          monto?: number
+          peso_total?: number
+          tipo_domicilio?: string | null
+          trackings?: string[]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "paquetes_cliente_id_fkey"
+            columns: ["cliente_id"]
+            isOneToOne: false
+            referencedRelation: "clientes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      plantillas: {
+        Row: {
+          contenido_markdown: string
+          created_at: string
+          id: string
+          titulo: string
+          updated_at: string
+          variables_usadas: string[]
+        }
+        Insert: {
+          contenido_markdown: string
+          created_at?: string
+          id?: string
+          titulo: string
+          updated_at?: string
+          variables_usadas?: string[]
+        }
+        Update: {
+          contenido_markdown?: string
+          created_at?: string
+          id?: string
+          titulo?: string
+          updated_at?: string
+          variables_usadas?: string[]
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
