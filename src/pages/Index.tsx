@@ -1,133 +1,226 @@
 import { useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Package, MessageSquare, Sparkles } from "lucide-react";
+import { Package, MessageSquare, Sparkles, Zap } from "lucide-react";
 import NotificacionesPaquetes from "@/components/NotificacionesPaquetes";
 import BancoMensajes from "@/components/BancoMensajes";
 
 const Index = () => {
-  const [moduloActivo, setModuloActivo] = useState<'inicio' | 'paquetes' | 'mensajes'>('inicio');
+  const [activeModule, setActiveModule] = useState<"packages" | "messages" | null>(null);
 
-  if (moduloActivo === 'paquetes') {
-    return <NotificacionesPaquetes onVolver={() => setModuloActivo('inicio')} />;
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6 }
+    }
+  };
+
+  const logoVariants = {
+    hidden: { scale: 0, rotate: -180 },
+    visible: { 
+      scale: 1, 
+      rotate: 0,
+      transition: { 
+        type: "spring" as const,
+        stiffness: 260,
+        damping: 20
+      }
+    }
+  };
+
+  if (activeModule === "packages") {
+    return <NotificacionesPaquetes onVolver={() => setActiveModule(null)} />;
   }
 
-  if (moduloActivo === 'mensajes') {
-    return <BancoMensajes onVolver={() => setModuloActivo('inicio')} />;
+  if (activeModule === "messages") {
+    return <BancoMensajes onVolver={() => setActiveModule(null)} />;
   }
 
   return (
-    <div className="min-h-screen bg-gradient-primary">
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="text-center mb-12 animate-fade-in">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Sparkles className="h-8 w-8 text-secondary" />
-            <h1 className="text-4xl font-bold text-primary-foreground">KeyBox</h1>
-            <Sparkles className="h-8 w-8 text-secondary" />
-          </div>
-          <p className="text-xl text-primary-foreground/90 mb-2">
-            Generador de Mensajes Automáticos
-          </p>
-          <Badge variant="secondary" className="text-sm">
-            v1.0 - Sistema de Comunicación
-          </Badge>
-        </div>
-
-        {/* Módulos principales */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {/* Módulo 1: Notificaciones de Paquetes */}
-          <Card 
-            className="hover:shadow-glow transition-all duration-300 cursor-pointer animate-scale-in border-primary/20 bg-card/95 backdrop-blur-sm"
-            onClick={() => setModuloActivo('paquetes')}
-          >
-            <CardHeader className="text-center pb-4">
-              <div className="mx-auto mb-4 h-16 w-16 rounded-full bg-gradient-primary flex items-center justify-center">
-                <Package className="h-8 w-8 text-primary-foreground" />
-              </div>
-              <CardTitle className="text-2xl text-foreground">
-                Notificaciones Paquetes
-              </CardTitle>
-              <CardDescription className="text-muted-foreground">
-                Genera mensajes automáticos para WhatsApp y Telegram con información de paquetes
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-secondary"></div>
-                  <span>Autocompletado de datos de cliente</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-secondary"></div>
-                  <span>Enlaces directos de WhatsApp/Telegram</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-secondary"></div>
-                  <span>Cálculo automático de domicilio</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-secondary"></div>
-                  <span>Formato profesional y amigable</span>
-                </div>
-              </div>
-              <Button className="w-full bg-gradient-primary hover:opacity-90 border-0">
-                Acceder al Módulo
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* Módulo 2: Banco de Mensajes */}
-          <Card 
-            className="hover:shadow-glow transition-all duration-300 cursor-pointer animate-scale-in border-primary/20 bg-card/95 backdrop-blur-sm"
-            onClick={() => setModuloActivo('mensajes')}
-          >
-            <CardHeader className="text-center pb-4">
-              <div className="mx-auto mb-4 h-16 w-16 rounded-full bg-gradient-accent flex items-center justify-center">
-                <MessageSquare className="h-8 w-8 text-foreground" />
-              </div>
-              <CardTitle className="text-2xl text-foreground">
-                Banco de Mensajes
-              </CardTitle>
-              <CardDescription className="text-muted-foreground">
-                Crea mensajes personalizados con editor enriquecido y variables masivas
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-secondary"></div>
-                  <span>Editor con formato rich text</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-secondary"></div>
-                  <span>Variables dinámicas personalizables</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-secondary"></div>
-                  <span>Importación CSV/Excel masiva</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-secondary"></div>
-                  <span>Plantillas reutilizables</span>
-                </div>
-              </div>
-              <Button variant="secondary" className="w-full">
-                Acceder al Módulo
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Footer */}
-        <div className="text-center mt-12 text-primary-foreground/70">
-          <p className="text-sm">
-            © 2025 KeyBox - Sistema de Generación de Mensajes
-          </p>
-        </div>
+    <motion.div 
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="min-h-screen bg-gradient-primary relative overflow-hidden"
+    >
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          animate={{
+            x: [0, 100, 0],
+            y: [0, -100, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="absolute top-1/4 left-1/4 w-64 h-64 bg-keybox-yellow/10 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{
+            x: [0, -100, 0],
+            y: [0, 100, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-keybox-blue/10 rounded-full blur-3xl"
+        />
       </div>
-    </div>
+
+      <div className="relative z-10 container mx-auto px-6 py-16">
+        {/* Header with animated logo */}
+        <motion.header variants={itemVariants} className="text-center mb-20">
+          <motion.div 
+            variants={logoVariants}
+            className="mb-8 flex justify-center"
+          >
+            <div className="relative">
+              <div className="w-24 h-24 bg-keybox-yellow rounded-2xl flex items-center justify-center shadow-glow">
+                <Package className="w-12 h-12 text-keybox-navy" />
+              </div>
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                className="absolute -top-2 -right-2 w-8 h-8 bg-keybox-blue rounded-full flex items-center justify-center"
+              >
+                <Sparkles className="w-4 h-4 text-white" />
+              </motion.div>
+            </div>
+          </motion.div>
+          
+          <motion.h1 
+            variants={itemVariants}
+            className="text-6xl font-bold text-white mb-6 tracking-tight"
+          >
+            Key<span className="text-keybox-yellow">Box</span>
+          </motion.h1>
+          <motion.p 
+            variants={itemVariants}
+            className="text-xl text-white/80 max-w-2xl mx-auto leading-relaxed"
+          >
+            Sistema ultra-moderno de notificaciones automatizadas para entregas de paquetes
+          </motion.p>
+        </motion.header>
+
+        {/* Module cards */}
+        <motion.div 
+          variants={itemVariants}
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+        >
+          {/* Package Notifications Module */}
+          <motion.div
+            whileHover={{ 
+              scale: 1.02,
+              rotateY: 5,
+              z: 50
+            }}
+            whileTap={{ scale: 0.98 }}
+            className="group cursor-pointer"
+            onClick={() => setActiveModule("packages")}
+          >
+            <div className="h-80 bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 p-8 shadow-elegant hover:shadow-glow transition-all duration-500 hover:bg-white/20">
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-16 h-16 bg-keybox-yellow/20 rounded-2xl flex items-center justify-center group-hover:bg-keybox-yellow/30 transition-colors duration-300">
+                  <Package className="w-8 h-8 text-keybox-yellow" />
+                </div>
+                <motion.div
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <Zap className="w-6 h-6 text-keybox-yellow" />
+                </motion.div>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Notificador de Paquetes
+              </h3>
+              <p className="text-white/70 mb-6 leading-relaxed">
+                Genera mensajes automatizados y personalizados para entregas. Formatos profesionales con WhatsApp integration.
+              </p>
+              <div className="flex items-center text-keybox-yellow font-medium group-hover:translate-x-2 transition-transform duration-300">
+                Comenzar →
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Message Bank Module */}
+          <motion.div
+            whileHover={{ 
+              scale: 1.02,
+              rotateY: -5,
+              z: 50
+            }}
+            whileTap={{ scale: 0.98 }}
+            className="group cursor-pointer"
+            onClick={() => setActiveModule("messages")}
+          >
+            <div className="h-80 bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 p-8 shadow-elegant hover:shadow-glow transition-all duration-500 hover:bg-white/20">
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-16 h-16 bg-keybox-blue/20 rounded-2xl flex items-center justify-center group-hover:bg-keybox-blue/30 transition-colors duration-300">
+                  <MessageSquare className="w-8 h-8 text-keybox-blue" />
+                </div>
+                <motion.div
+                  animate={{ rotate: [0, 360] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                >
+                  <Sparkles className="w-6 h-6 text-keybox-blue" />
+                </motion.div>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Banco de Mensajes
+              </h3>
+              <p className="text-white/70 mb-6 leading-relaxed">
+                Crea y gestiona plantillas visuales reutilizables. Editor enriquecido con variables dinámicas.
+              </p>
+              <div className="flex items-center text-keybox-blue font-medium group-hover:translate-x-2 transition-transform duration-300">
+                Explorar →
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Features highlight */}
+        <motion.div 
+          variants={itemVariants}
+          className="mt-20 text-center"
+        >
+          <div className="flex flex-wrap justify-center gap-6 text-white/60">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-keybox-yellow rounded-full"></div>
+              Animaciones 3D suaves
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-keybox-blue rounded-full"></div>
+              Glassmorphism elegante
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-keybox-yellow rounded-full"></div>
+              WhatsApp Integration
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-keybox-blue rounded-full"></div>
+              Plantillas reutilizables
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </motion.div>
   );
 };
 
