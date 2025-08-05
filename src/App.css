@@ -28,29 +28,29 @@
   
   /* Design System Colors - High Contrast Professional */
   --primary: 217 91% 60%;           /* #3B82F6 - Blue buttons */
-  --primary-foreground: 215 25% 27%; /* #F9FAFB - Light text */
+  --primary-foreground: 249 10% 98%; /* #F9FAFB - Light text */
   --primary-hover: 217 91% 53%;     /* Slightly darker blue for hover */
   
   /* Background System */
   --background: 215 25% 27%;        /* #1E293B - Dark background */
-  --foreground: 215 25% 27%;        /* #F9FAFB - Light text */
+  --foreground: 249 10% 98%;        /* #F9FAFB - Light text */
   
   /* Card & Input System */
   --card: 215 25% 27%;              /* #1E293B - Dark cards */
   --card-foreground: 249 10% 98%;   /* #F9FAFB - Light text */
   --input: 210 24% 16%;             /* #1F2937 - Dark input background */
-  --input-foreground: 215 25% 27%;  /* #F9FAFB - Light text */
+  --input-foreground: 249 10% 98%;  /* #F9FAFB - Light text */
   --input-border: 217 91% 60%;      /* #3B82F6 - Blue borders */
   
   /* Secondary & Accent */
   --secondary: 215 25% 27%;         /* #1E293B - Same as cards */
-  --secondary-foreground: 215 25% 27%; /* #F9FAFB - Light text */
+  --secondary-foreground: 249 10% 98%; /* #F9FAFB - Light text */
   --accent: var(--keybox-yellow);
   --accent-foreground: var(--keybox-navy);
   
   /* Muted & Borders */
   --muted: 210 24% 16%;             /* #1F2937 - Same as inputs */
-  --muted-foreground: 215 25% 27%;  /* #F9FAFB - Light text for badges */
+  --muted-foreground: 249 10% 98%;  /* #F9FAFB - Light text for badges */
   --border: 215 25% 35%;            /* Lighter than cards for borders */
   --ring: 217 91% 60%;              /* #3B82F6 - Blue focus ring */
   
@@ -70,13 +70,13 @@
 
 .dark {
   --background: 17 24 39;           /* #111827 - Dark Mode Base */
-  --foreground: 17 24 39;        /* #F9FAFB - Light Text */
+  --foreground: 249 250 251;        /* #F9FAFB - Light Text */
   
   --card: 30 41 59;                 /* #1E293B - Dark Cards */
   --card-foreground: 249 250 251;
   
   --input: 31 45 61;                /* #1F2937 - Dark Inputs */
-  --input-foreground: 31 45 61;
+  --input-foreground: 249 250 251;
   --input-border: 59 130 246;       /* #3B82F6 - Blue Border */
   
   --primary: 59 130 246;            /* #3B82F6 - Blue Primary */
