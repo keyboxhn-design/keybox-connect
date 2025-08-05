@@ -12,9 +12,9 @@
   --keybox-input-border: 220 91% 56%; /* #2563EB - Input Borders */
   
   /* Text Colors */
-  --text-primary: 210 24% 16%;       /* #1F2937 - Dark Gray Text */
-  --text-secondary: 215 20% 45%;     /* #6B7280 - Medium Gray (más oscuro para mejor contraste) */
-  --text-placeholder: 215 20% 45%;   /* #6B7280 - Placeholder Text (más oscuro) */
+  --text-primary: 0 0% 100%;         /* #FFFFFF - White text for dark background */
+  --text-secondary: 215 20% 65%;     /* #9CA3AF - Light gray for secondary text */
+  --text-placeholder: 215 20% 50%;   /* #6B7280 - Medium gray for placeholders */
   
   /* Professional Shadows */
   --shadow-soft: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
@@ -32,26 +32,26 @@
   --primary-hover: var(--keybox-blue-hover);
   
   /* Background System */
-  --background: var(--keybox-bg);
-  --foreground: var(--text-primary);
+  --background: 210 11% 15%;        /* #111827 - Dark background */
+  --foreground: 0 0% 100%;          /* #FFFFFF - White text */
   
   /* Card & Input System */
-  --card: 214 90% 97%;              /* #F3F7FB - Mismo que background para contraste */
-  --card-foreground: var(--text-primary);
-  --input: 214 90% 97%;             /* #F3F7FB - Fondo de input igual al background */
-  --input-foreground: var(--text-primary);
+  --card: 210 11% 15%;              /* #111827 - Same as background */
+  --card-foreground: 0 0% 100%;     /* #FFFFFF - White text */
+  --input: 210 11% 15%;             /* #111827 - Dark input background */
+  --input-foreground: 0 0% 100%;    /* #FFFFFF - White text */
   --input-border: var(--keybox-input-border);
   
   /* Secondary & Accent */
-  --secondary: 210 40% 96%;         /* Light Gray Secondary */
-  --secondary-foreground: var(--text-primary);
+  --secondary: 210 11% 20%;         /* #1F2937 - Slightly lighter than background */
+  --secondary-foreground: 0 0% 100%; /* #FFFFFF - White text */
   --accent: var(--keybox-yellow);
   --accent-foreground: var(--keybox-navy);
   
   /* Muted & Borders */
-  --muted: 215 16% 88%;             /* #E5E7EB - Light Gray para badges */
-  --muted-foreground: var(--keybox-navy);  /* Navy para texto en badges */
-  --border: 220 13% 91%;            /* #E5E7EB - Light Borders */
+  --muted: 210 11% 25%;             /* #374151 - Dark muted background */
+  --muted-foreground: 0 0% 100%;    /* #FFFFFF - White text for badges */
+  --border: 210 11% 30%;            /* #4B5563 - Lighter borders for contrast */
   --ring: var(--keybox-input-border);
   
   /* Destructive & Success */
