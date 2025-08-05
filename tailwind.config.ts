@@ -55,10 +55,11 @@ const config: Config = {
         },
         keybox: {
           navy: "hsl(var(--keybox-navy))",
-          yellow: "hsl(var(--keybox-yellow))",
           blue: "hsl(var(--keybox-blue))",
-          gray: "hsl(var(--keybox-light-gray))",
-          darkGray: "hsl(var(--keybox-dark-gray))",
+          blueHover: "hsl(var(--keybox-blue-hover))",
+          yellow: "hsl(var(--keybox-yellow))",
+          bg: "hsl(var(--keybox-bg))",
+          inputBorder: "hsl(var(--keybox-input-border))",
         },
       },
       borderRadius: {

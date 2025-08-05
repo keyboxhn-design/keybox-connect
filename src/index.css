@@ -3,18 +3,18 @@
 @tailwind utilities;
 
 :root {
-  /* KeyBox Brand Colors - Improved Contrast */
-  --keybox-navy: 26 46 102; /* #1A2E66 */
-  --keybox-yellow: 51 198 87; /* #FFC857 */
-  --keybox-blue: 59 130 246; /* #3B82F6 */
-  --keybox-light-gray: 244 244 245; /* #F4F4F5 */
-  --keybox-medium-gray: 228 228 231; /* #E4E4E7 */
-  --keybox-dark-gray: 113 113 122; /* #71717A */
+  /* Professional Color Palette - High Contrast */
+  --keybox-navy: 214 84% 23%;        /* #1E3A8A - Dark Blue Labels */
+  --keybox-blue: 217 91% 53%;        /* #1D4ED8 - Primary Button */
+  --keybox-blue-hover: 214 84% 40%;  /* #1E40AF - Button Hover */
+  --keybox-yellow: 48 96% 53%;       /* #FACC15 - Accent/Badges */
+  --keybox-bg: 214 90% 97%;          /* #F3F7FB - Light Blue Background */
+  --keybox-input-border: 220 91% 56%; /* #2563EB - Input Borders */
   
-  /* Glassmorphism */
-  --glass-bg: 255 255 255 / 0.95;
-  --glass-border: 255 255 255 / 0.3;
-  --glass-backdrop: blur(20px);
+  /* Text Colors */
+  --text-primary: 210 24% 16%;       /* #1F2937 - Dark Gray Text */
+  --text-secondary: 213 27% 84%;     /* #9CA3AF - Medium Gray */
+  --text-placeholder: 209 20% 25%;   /* #6B7280 - Placeholder Text */
   
   /* Professional Shadows */
   --shadow-soft: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
@@ -23,26 +23,30 @@
   --shadow-floating: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   
   /* Smooth Transitions */
-  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  --transition-elastic: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   
-  /* Primary Colors - Professional Navy */
-  --primary: var(--keybox-navy);
-  --primary-foreground: 255 255 255;
-  --primary-glow: var(--keybox-blue);
+  /* Design System Colors - High Contrast Professional */
+  --primary: var(--keybox-blue);
+  --primary-foreground: 0 0% 100%;
+  --primary-hover: var(--keybox-blue-hover);
   
-  /* Secondary Colors */
-  --secondary: var(--keybox-light-gray);
-  --secondary-foreground: var(--keybox-navy);
+  /* Background System */
+  --background: var(--keybox-bg);
+  --foreground: var(--text-primary);
   
-  /* Accent Colors */
-  --accent: var(--keybox-medium-gray);
+  /* Card & Input System */
+  --card: 0 0% 100%;                /* Pure White */
+  --card-foreground: var(--text-primary);
+  --input: 0 0% 100%;               /* White Input Background */
+  --input-foreground: var(--text-primary);
+  --input-border: var(--keybox-input-border);
+  
+  /* Secondary & Accent */
+  --secondary: 210 40% 96%;         /* Light Gray Secondary */
+  --secondary-foreground: var(--text-primary);
+  --accent: var(--keybox-yellow);
   --accent-foreground: var(--keybox-navy);
-  
-  /* Background - Pure White */
-  --background: 255 255 255;
-  --foreground: var(--keybox-navy);
   
   /* Card */
   --card: 0 0% 100%;
@@ -217,22 +221,28 @@ All colors MUST be HSL.
   }
 }
 
-/* Modern Form & UI Components */
+/* Professional Form & UI Components */
 @layer components {
   .form-card {
-    @apply bg-white rounded-xl border border-gray-200 shadow-soft p-8 space-y-6;
+    @apply bg-white rounded-xl border border-gray-200 shadow-strong p-8 space-y-6;
   }
   
   .modern-input {
-    @apply bg-gray-50 border-gray-200 rounded-xl px-4 py-3 text-base transition-all duration-200 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20;
+    @apply bg-white border-2 border-gray-300 rounded-lg px-4 py-3 text-gray-800 placeholder:text-gray-400 
+           transition-all duration-150 ease-in-out
+           focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none
+           shadow-sm hover:border-gray-400;
   }
   
   .modern-button {
-    @apply bg-primary text-white font-medium px-6 py-3 rounded-xl shadow-md hover:bg-primary/90 hover:shadow-lg active:scale-95 transition-all duration-200;
+    @apply bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-medium 
+           hover:bg-blue-700 hover:shadow-strong active:scale-95 
+           transition-all duration-150 ease-in-out
+           focus:outline-none focus:ring-2 focus:ring-blue-500/50;
   }
   
-  .glass-card {
-    @apply bg-white/95 backdrop-blur-xl border border-white/30 rounded-3xl shadow-floating;
+  .modern-label {
+    @apply text-blue-900 font-medium text-sm mb-2 block;
   }
   
   .hover-lift {
