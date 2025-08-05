@@ -228,7 +228,7 @@ All colors MUST be HSL.
   }
   
   .modern-button {
-    @apply bg-navy-600 text-white font-medium px-6 py-3 rounded-xl shadow-md hover:bg-navy-700 hover:shadow-lg active:scale-95 transition-all duration-200;
+    @apply bg-primary text-white font-medium px-6 py-3 rounded-xl shadow-md hover:bg-primary/90 hover:shadow-lg active:scale-95 transition-all duration-200;
   }
   
   .glass-card {
