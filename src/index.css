@@ -12,8 +12,8 @@
   --keybox-input-border: 220 91% 56%; /* #2563EB - Input Borders */
   
   /* Text Colors */
-  --text-primary: 0 0% 100%;         /* #FFFFFF - White text for dark background */
-  --text-secondary: 215 20% 65%;     /* #9CA3AF - Light gray for secondary text */
+  --text-primary: 249 10% 98%;       /* #F9FAFB - Light text */
+  --text-secondary: 215 20% 65%;     /* #9CA3AF - Medium gray for secondary text */
   --text-placeholder: 215 20% 50%;   /* #6B7280 - Medium gray for placeholders */
   
   /* Professional Shadows */
@@ -27,32 +27,32 @@
   --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   
   /* Design System Colors - High Contrast Professional */
-  --primary: var(--keybox-blue);
-  --primary-foreground: 0 0% 100%;
-  --primary-hover: var(--keybox-blue-hover);
+  --primary: 217 91% 60%;           /* #3B82F6 - Blue buttons */
+  --primary-foreground: 249 10% 98%; /* #F9FAFB - Light text */
+  --primary-hover: 217 91% 53%;     /* Slightly darker blue for hover */
   
   /* Background System */
   --background: 210 11% 15%;        /* #111827 - Dark background */
-  --foreground: 0 0% 100%;          /* #FFFFFF - White text */
+  --foreground: 249 10% 98%;        /* #F9FAFB - Light text */
   
   /* Card & Input System */
-  --card: 210 11% 15%;              /* #111827 - Same as background */
-  --card-foreground: 0 0% 100%;     /* #FFFFFF - White text */
-  --input: 210 11% 15%;             /* #111827 - Dark input background */
-  --input-foreground: 0 0% 100%;    /* #FFFFFF - White text */
-  --input-border: var(--keybox-input-border);
+  --card: 215 25% 27%;              /* #1E293B - Dark cards */
+  --card-foreground: 249 10% 98%;   /* #F9FAFB - Light text */
+  --input: 210 24% 16%;             /* #1F2937 - Dark input background */
+  --input-foreground: 249 10% 98%;  /* #F9FAFB - Light text */
+  --input-border: 217 91% 60%;      /* #3B82F6 - Blue borders */
   
   /* Secondary & Accent */
-  --secondary: 210 11% 20%;         /* #1F2937 - Slightly lighter than background */
-  --secondary-foreground: 0 0% 100%; /* #FFFFFF - White text */
+  --secondary: 215 25% 27%;         /* #1E293B - Same as cards */
+  --secondary-foreground: 249 10% 98%; /* #F9FAFB - Light text */
   --accent: var(--keybox-yellow);
   --accent-foreground: var(--keybox-navy);
   
   /* Muted & Borders */
-  --muted: 210 11% 25%;             /* #374151 - Dark muted background */
-  --muted-foreground: 0 0% 100%;    /* #FFFFFF - White text for badges */
-  --border: 210 11% 30%;            /* #4B5563 - Lighter borders for contrast */
-  --ring: var(--keybox-input-border);
+  --muted: 210 24% 16%;             /* #1F2937 - Same as inputs */
+  --muted-foreground: 249 10% 98%;  /* #F9FAFB - Light text for badges */
+  --border: 215 25% 35%;            /* Lighter than cards for borders */
+  --ring: 217 91% 60%;              /* #3B82F6 - Blue focus ring */
   
   /* Destructive & Success */
   --destructive: 0 84% 60%;         /* #EF4444 - Red */
@@ -201,77 +201,145 @@ All colors MUST be HSL.
 /* Professional Form & UI Components */
 @layer components {
   .form-card {
-    @apply bg-slate-50 rounded-xl border border-slate-300 shadow-strong p-8 space-y-6;
+    @apply rounded-xl border shadow-strong p-8 space-y-6;
+    background-color: #1E293B;
+    border-color: #374151;
   }
   
   .modern-input {
-    @apply bg-slate-50 border-2 border-blue-500 rounded-lg px-4 py-3 text-gray-800 placeholder:text-gray-600 
+    @apply border-2 rounded-lg px-4 py-3 placeholder:text-gray-400 
            transition-all duration-150 ease-in-out
-           focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 focus:outline-none
-           shadow-sm hover:border-blue-600;
+           focus:ring-2 focus:ring-blue-500/20 focus:outline-none
+           shadow-sm;
+    background-color: #1F2937;
+    color: #F9FAFB;
+    border-color: #3B82F6;
+  }
+  
+  .modern-input:hover {
+    border-color: #60A5FA;
+  }
+  
+  .modern-input:focus {
+    border-color: #60A5FA;
   }
   
   .modern-button {
-    @apply bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-medium 
-           hover:bg-blue-700 hover:shadow-strong active:scale-95 
+    @apply font-medium px-6 py-3 rounded-lg shadow-medium 
+           hover:shadow-strong active:scale-95 
            transition-all duration-150 ease-in-out
            focus:outline-none focus:ring-2 focus:ring-blue-500/50;
+    background-color: #3B82F6;
+    color: #F9FAFB;
+  }
+  
+  .modern-button:hover {
+    background-color: #2563EB;
   }
   
   .modern-label {
-    @apply text-blue-900 font-medium text-sm mb-2 block;
+    @apply font-medium text-sm mb-2 block;
+    color: #60A5FA;
   }
   
   .professional-card {
-    @apply bg-slate-50 rounded-xl border border-slate-300 shadow-strong p-6 space-y-4;
+    @apply rounded-xl border shadow-strong p-6 space-y-4;
+    background-color: #1E293B;
+    border-color: #374151;
   }
   
   .modern-textarea {
-    @apply bg-slate-50 border-2 border-blue-500 rounded-lg px-4 py-3 text-gray-800 placeholder:text-gray-600 
+    @apply border-2 rounded-lg px-4 py-3 placeholder:text-gray-400 
            transition-all duration-150 ease-in-out resize-none
-           focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 focus:outline-none
-           shadow-sm hover:border-blue-600;
+           focus:ring-2 focus:ring-blue-500/20 focus:outline-none
+           shadow-sm;
+    background-color: #1F2937;
+    color: #F9FAFB;
+    border-color: #3B82F6;
+  }
+  
+  .modern-textarea:hover {
+    border-color: #60A5FA;
+  }
+  
+  .modern-textarea:focus {
+    border-color: #60A5FA;
   }
   
   .modern-select {
-    @apply bg-slate-50 border-2 border-blue-500 rounded-lg px-4 py-3 text-gray-800
+    @apply border-2 rounded-lg px-4 py-3
            transition-all duration-150 ease-in-out cursor-pointer
-           focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 focus:outline-none
-           shadow-sm hover:border-blue-600;
+           focus:ring-2 focus:ring-blue-500/20 focus:outline-none
+           shadow-sm;
+    background-color: #1F2937;
+    color: #F9FAFB;
+    border-color: #3B82F6;
+  }
+  
+  .modern-select:hover {
+    border-color: #60A5FA;
+  }
+  
+  .modern-select:focus {
+    border-color: #60A5FA;
   }
   
   .modern-badge {
-    @apply bg-slate-200 text-slate-800 border border-slate-400 px-3 py-1 rounded-full text-sm font-medium;
+    @apply border px-3 py-1 rounded-full text-sm font-medium;
+    background-color: #374151;
+    color: #F9FAFB;
+    border-color: #4B5563;
   }
   
   .modern-badge-selected {
-    @apply bg-blue-100 text-blue-900 border border-blue-400 px-3 py-1 rounded-full text-sm font-medium;
+    @apply border px-3 py-1 rounded-full text-sm font-medium;
+    background-color: #1E40AF;
+    color: #DBEAFE;
+    border-color: #3B82F6;
   }
   
   .modern-badge-accent {
-    @apply bg-yellow-100 text-yellow-900 border border-yellow-400 px-3 py-1 rounded-full text-sm font-medium;
+    @apply border px-3 py-1 rounded-full text-sm font-medium;
+    background-color: #92400E;
+    color: #FEF3C7;
+    border-color: #D97706;
   }
   
   .modern-dropdown {
-    @apply bg-slate-50 border border-slate-400 rounded-lg shadow-medium max-h-64 overflow-y-auto;
+    @apply border rounded-lg shadow-medium max-h-64 overflow-y-auto;
+    background-color: #1E293B;
+    border-color: #374151;
   }
   
   .modern-dropdown-item {
-    @apply px-4 py-3 hover:bg-slate-100 cursor-pointer border-b border-slate-200 last:border-b-0
-           transition-colors duration-150 ease-in-out text-gray-800;
+    @apply px-4 py-3 cursor-pointer border-b last:border-b-0
+           transition-colors duration-150 ease-in-out;
+    color: #F9FAFB;
+    border-color: #374151;
+  }
+  
+  .modern-dropdown-item:hover {
+    background-color: #374151;
   }
   
   .modern-dropdown-item-selected {
-    @apply bg-blue-50 text-blue-900 font-medium;
+    @apply font-medium;
+    background-color: #1E40AF;
+    color: #DBEAFE;
   }
   
   .glass-nav {
-    @apply bg-slate-50/95 backdrop-blur-xl border-b border-slate-300 shadow-sm;
+    @apply backdrop-blur-xl border-b shadow-sm;
+    background-color: rgba(30, 41, 59, 0.95);
+    border-color: #374151;
   }
   
   .preview-box {
-    @apply bg-slate-100 border border-slate-400 rounded-lg p-4 text-gray-800 whitespace-pre-wrap 
+    @apply border rounded-lg p-4 whitespace-pre-wrap 
            font-mono text-sm shadow-sm;
+    background-color: #374151;
+    color: #F9FAFB;
+    border-color: #4B5563;
   }
 }
 
