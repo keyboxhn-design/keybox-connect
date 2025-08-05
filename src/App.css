@@ -1,42 +1,349 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Professional Color Palette - High Contrast */
+  --keybox-navy: 214 84% 23%;        /* #1E3A8A - Dark Blue Labels */
+  --keybox-blue: 217 91% 53%;        /* #1D4ED8 - Primary Button */
+  --keybox-blue-hover: 214 84% 40%;  /* #1E40AF - Button Hover */
+  --keybox-yellow: 48 96% 53%;       /* #FACC15 - Accent/Badges */
+  --keybox-bg: 214 90% 97%;          /* #F3F7FB - Light Blue Background */
+  --keybox-input-border: 220 91% 56%; /* #2563EB - Input Borders */
+  
+  /* Text Colors */
+  --text-primary: 249 10% 98%;       /* #F9FAFB - Light text */
+  --text-secondary: 215 20% 65%;     /* #9CA3AF - Medium gray for secondary text */
+  --text-placeholder: 215 20% 50%;   /* #6B7280 - Medium gray for placeholders */
+  
+  /* Professional Shadows */
+  --shadow-soft: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-medium: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-strong: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-floating: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  
+  /* Smooth Transitions */
+  --transition-smooth: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* Design System Colors - High Contrast Professional */
+  --primary: 217 91% 60%;           /* #3B82F6 - Blue buttons */
+  --primary-foreground: 249 10% 98%; /* #F9FAFB - Light text */
+  --primary-hover: 217 91% 53%;     /* Slightly darker blue for hover */
+  
+  /* Background System */
+  --background: 215 25% 27%;        /* #1E293B - Dark background */
+  --foreground: 249 10% 98%;        /* #F9FAFB - Light text */
+  
+  /* Card & Input System */
+  --card: 215 25% 27%;              /* #1E293B - Dark cards */
+  --card-foreground: 249 10% 98%;   /* #F9FAFB - Light text */
+  --input: 210 24% 16%;             /* #1F2937 - Dark input background */
+  --input-foreground: 249 10% 98%;  /* #F9FAFB - Light text */
+  --input-border: 217 91% 60%;      /* #3B82F6 - Blue borders */
+  
+  /* Secondary & Accent */
+  --secondary: 215 25% 27%;         /* #1E293B - Same as cards */
+  --secondary-foreground: 249 10% 98%; /* #F9FAFB - Light text */
+  --accent: var(--keybox-yellow);
+  --accent-foreground: var(--keybox-navy);
+  
+  /* Muted & Borders */
+  --muted: 210 24% 16%;             /* #1F2937 - Same as inputs */
+  --muted-foreground: 249 10% 98%;  /* #F9FAFB - Light text for badges */
+  --border: 215 25% 35%;            /* Lighter than cards for borders */
+  --ring: 217 91% 60%;              /* #3B82F6 - Blue focus ring */
+  
+  /* Destructive & Success */
+  --destructive: 0 84% 60%;         /* #EF4444 - Red */
+  --destructive-foreground: 0 0% 100%;
+  --success: 142 76% 36%;           /* #10B981 - Green */
+  --success-foreground: 0 0% 100%;
+  
+  /* Popover */
+  --popover: var(--card);
+  --popover-foreground: var(--card-foreground);
+  
+  /* Radius */
+  --radius: 0.5rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.dark {
+  --background: 17 24 39;           /* #111827 - Dark Mode Base */
+  --foreground: 249 250 251;        /* #F9FAFB - Light Text */
+  
+  --card: 30 41 59;                 /* #1E293B - Dark Cards */
+  --card-foreground: 249 250 251;
+  
+  --input: 31 45 61;                /* #1F2937 - Dark Inputs */
+  --input-foreground: 249 250 251;
+  --input-border: 59 130 246;       /* #3B82F6 - Blue Border */
+  
+  --primary: 59 130 246;            /* #3B82F6 - Blue Primary */
+  --primary-foreground: 255 255 255;
+  --primary-hover: 37 99 235;       /* #2563EB - Darker Blue */
+  
+  --secondary: 75 85 99;            /* #4B5563 - Dark Secondary */
+  --secondary-foreground: 249 250 251;
+  
+  --accent: var(--keybox-yellow);
+  --accent-foreground: var(--keybox-navy);
+  
+  --muted: 55 65 81;                /* #374151 - Muted Dark */
+  --muted-foreground: 156 163 175;  /* #9CA3AF - Muted Text */
+  
+  --border: 75 85 99;               /* #4B5563 - Dark Borders */
+  --ring: 59 130 246;               /* #3B82F6 - Focus Ring */
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
-  to {
-    transform: rotate(360deg);
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
   }
 }
 
-.card {
-  padding: 2em;
+/* Professional Form & UI Components */
+@layer components {
+  .form-card {
+    @apply rounded-xl border shadow-strong p-8 space-y-6;
+    background-color: #1E293B;
+    border-color: #374151;
+  }
+  
+  .modern-input {
+    @apply border-2 rounded-lg px-4 py-3 placeholder:text-gray-400 
+           transition-all duration-150 ease-in-out
+           focus:ring-2 focus:ring-blue-500/20 focus:outline-none
+           shadow-sm;
+    background-color: #1F2937;
+    color: #F9FAFB;
+    border-color: #3B82F6;
+  }
+  
+  .modern-input:hover {
+    border-color: #60A5FA;
+  }
+  
+  .modern-input:focus {
+    border-color: #60A5FA;
+  }
+  
+  .modern-button {
+    @apply font-medium px-6 py-3 rounded-lg shadow-medium 
+           hover:shadow-strong active:scale-95 
+           transition-all duration-150 ease-in-out
+           focus:outline-none focus:ring-2 focus:ring-blue-500/50;
+    background-color: #3B82F6;
+    color: #F9FAFB;
+  }
+  
+  .modern-button:hover {
+    background-color: #2563EB;
+  }
+  
+  .modern-label {
+    @apply font-medium text-sm mb-2 block;
+    color: #FFFFFF;
+  }
+  
+  .professional-card {
+    @apply rounded-xl border shadow-strong p-6 space-y-4;
+    background-color: #1E293B;
+    border-color: #374151;
+  }
+  
+  .modern-textarea {
+    @apply border-2 rounded-lg px-4 py-3 placeholder:text-gray-400 
+           transition-all duration-150 ease-in-out resize-none
+           focus:ring-2 focus:ring-blue-500/20 focus:outline-none
+           shadow-sm;
+    background-color: #1F2937;
+    color: #F9FAFB;
+    border-color: #3B82F6;
+  }
+  
+  .modern-textarea:hover {
+    border-color: #60A5FA;
+  }
+  
+  .modern-textarea:focus {
+    border-color: #60A5FA;
+  }
+  
+  .modern-select {
+    @apply border-2 rounded-lg px-4 py-3
+           transition-all duration-150 ease-in-out cursor-pointer
+           focus:ring-2 focus:ring-blue-500/20 focus:outline-none
+           shadow-sm;
+    background-color: #1F2937;
+    color: #F9FAFB;
+    border-color: #3B82F6;
+  }
+  
+  .modern-select:hover {
+    border-color: #60A5FA;
+  }
+  
+  .modern-select:focus {
+    border-color: #60A5FA;
+  }
+  
+  .modern-badge {
+    @apply border px-3 py-1 rounded-full text-sm font-medium;
+    background-color: #374151;
+    color: #F9FAFB;
+    border-color: #4B5563;
+  }
+  
+  .modern-badge-selected {
+    @apply border px-3 py-1 rounded-full text-sm font-medium;
+    background-color: #1E40AF;
+    color: #DBEAFE;
+    border-color: #3B82F6;
+  }
+  
+  .modern-badge-accent {
+    @apply border px-3 py-1 rounded-full text-sm font-medium;
+    background-color: #92400E;
+    color: #FEF3C7;
+    border-color: #D97706;
+  }
+  
+  .modern-dropdown {
+    @apply border rounded-lg shadow-medium max-h-64 overflow-y-auto;
+    background-color: #1E293B;
+    border-color: #374151;
+  }
+  
+  .modern-dropdown-item {
+    @apply px-4 py-3 cursor-pointer border-b last:border-b-0
+           transition-colors duration-150 ease-in-out;
+    color: #F9FAFB;
+    border-color: #374151;
+  }
+  
+  .modern-dropdown-item:hover {
+    background-color: #374151;
+  }
+  
+  .modern-dropdown-item-selected {
+    @apply font-medium;
+    background-color: #1E40AF;
+    color: #DBEAFE;
+  }
+  
+  .glass-nav {
+    @apply backdrop-blur-xl border-b shadow-sm;
+    background-color: rgba(30, 41, 59, 0.95);
+    border-color: #374151;
+  }
+  
+  .preview-box {
+    @apply border rounded-lg p-4 whitespace-pre-wrap 
+           font-mono text-sm shadow-sm;
+    background-color: #374151;
+    color: #F9FAFB;
+    border-color: #4B5563;
+  }
 }
 
-.read-the-docs {
-  color: #888;
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
