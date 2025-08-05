@@ -3,44 +3,45 @@
 @tailwind utilities;
 
 :root {
-/* KeyBox Brand Colors */
-  --keybox-navy: 214 100% 20%;
-  --keybox-yellow: 45 95% 65%;
-  --keybox-blue: 214 95% 55%;
-  --keybox-light-gray: 220 13% 96%;
-  --keybox-dark-gray: 220 9% 46%;
+  /* KeyBox Brand Colors - Improved Contrast */
+  --keybox-navy: 26 46 102; /* #1A2E66 */
+  --keybox-yellow: 51 198 87; /* #FFC857 */
+  --keybox-blue: 59 130 246; /* #3B82F6 */
+  --keybox-light-gray: 244 244 245; /* #F4F4F5 */
+  --keybox-medium-gray: 228 228 231; /* #E4E4E7 */
+  --keybox-dark-gray: 113 113 122; /* #71717A */
   
   /* Glassmorphism */
-  --glass-bg: 255 255 255 / 0.1;
-  --glass-border: 255 255 255 / 0.2;
+  --glass-bg: 255 255 255 / 0.95;
+  --glass-border: 255 255 255 / 0.3;
   --glass-backdrop: blur(20px);
   
-  /* Advanced Shadows */
-  --shadow-soft: 0 2px 10px hsl(var(--keybox-navy) / 0.08);
-  --shadow-medium: 0 8px 30px hsl(var(--keybox-navy) / 0.12);
-  --shadow-strong: 0 20px 40px hsl(var(--keybox-navy) / 0.15);
-  --shadow-floating: 0 25px 50px hsl(var(--keybox-navy) / 0.25);
+  /* Professional Shadows */
+  --shadow-soft: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-medium: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-strong: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-floating: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   
-  /* Transitions */
+  /* Smooth Transitions */
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   --transition-elastic: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   
-  /* Primary Colors */
+  /* Primary Colors - Professional Navy */
   --primary: var(--keybox-navy);
-  --primary-foreground: 0 0% 98%;
+  --primary-foreground: 255 255 255;
   --primary-glow: var(--keybox-blue);
   
   /* Secondary Colors */
-  --secondary: var(--keybox-yellow);
+  --secondary: var(--keybox-light-gray);
   --secondary-foreground: var(--keybox-navy);
   
   /* Accent Colors */
-  --accent: var(--keybox-light-gray);
+  --accent: var(--keybox-medium-gray);
   --accent-foreground: var(--keybox-navy);
   
-  /* Background */
-  --background: 0 0% 100%;
+  /* Background - Pure White */
+  --background: 255 255 255;
   --foreground: var(--keybox-navy);
   
   /* Card */
@@ -216,14 +217,22 @@ All colors MUST be HSL.
   }
 }
 
-/* Utility Classes for Modern UX */
+/* Modern Form & UI Components */
 @layer components {
-  .glass-card {
-    @apply bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl;
+  .form-card {
+    @apply bg-white rounded-xl border border-gray-200 shadow-soft p-8 space-y-6;
   }
   
-  .glass-card-dark {
-    @apply bg-black/10 backdrop-blur-xl border border-white/10 rounded-3xl;
+  .modern-input {
+    @apply bg-gray-50 border-gray-200 rounded-xl px-4 py-3 text-base transition-all duration-200 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20;
+  }
+  
+  .modern-button {
+    @apply bg-navy-600 text-white font-medium px-6 py-3 rounded-xl shadow-md hover:bg-navy-700 hover:shadow-lg active:scale-95 transition-all duration-200;
+  }
+  
+  .glass-card {
+    @apply bg-white/95 backdrop-blur-xl border border-white/30 rounded-3xl shadow-floating;
   }
   
   .hover-lift {
