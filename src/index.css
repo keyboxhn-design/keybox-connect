@@ -48,75 +48,52 @@
   --accent: var(--keybox-yellow);
   --accent-foreground: var(--keybox-navy);
   
-  /* Card */
-  --card: 0 0% 100%;
-  --card-foreground: var(--keybox-navy);
+  /* Muted & Borders */
+  --muted: 229 24% 87%;             /* #E5E7EB - Light Gray */
+  --muted-foreground: var(--text-secondary);
+  --border: 220 13% 91%;            /* #E5E7EB - Light Borders */
+  --ring: var(--keybox-input-border);
+  
+  /* Destructive & Success */
+  --destructive: 0 84% 60%;         /* #EF4444 - Red */
+  --destructive-foreground: 0 0% 100%;
+  --success: 142 76% 36%;           /* #10B981 - Green */
+  --success-foreground: 0 0% 100%;
   
   /* Popover */
-  --popover: 0 0% 100%;
-  --popover-foreground: var(--keybox-navy);
-  
-  /* Muted */
-  --muted: var(--keybox-light-gray);
-  --muted-foreground: var(--keybox-dark-gray);
-  
-  /* Border */
-  --border: 220 13% 91%;
-  --input: 220 13% 91%;
-  
-  /* Ring */
-  --ring: var(--keybox-blue);
-  
-  /* Destructive */
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 98%;
+  --popover: var(--card);
+  --popover-foreground: var(--card-foreground);
   
   /* Radius */
   --radius: 0.5rem;
-  
-  /* Gradients */
-  --gradient-primary: linear-gradient(135deg, hsl(var(--keybox-navy)), hsl(var(--keybox-blue)));
-  --gradient-accent: linear-gradient(135deg, hsl(var(--keybox-yellow)), hsl(var(--keybox-blue)));
-  
-  /* Enhanced Shadows */
-  --shadow-glow: 0 0 20px hsl(var(--keybox-blue) / 0.3);
-  --shadow-elegant: 0 4px 20px hsl(var(--keybox-navy) / 0.1);
-  --shadow-intense: 0 0 40px hsl(var(--keybox-blue) / 0.4);
-  
-  /* Interactive Effects */
-  --hover-lift: translateY(-2px);
-  --hover-scale: scale(1.02);
-  --active-scale: scale(0.98);
 }
 
 .dark {
-  --background: var(--keybox-navy);
-  --foreground: 0 0% 98%;
+  --background: 17 24 39;           /* #111827 - Dark Mode Base */
+  --foreground: 249 250 251;        /* #F9FAFB - Light Text */
   
-  --card: 214 84% 15%;
-  --card-foreground: 0 0% 98%;
+  --card: 30 41 59;                 /* #1E293B - Dark Cards */
+  --card-foreground: 249 250 251;
   
-  --popover: 214 84% 15%;
-  --popover-foreground: 0 0% 98%;
+  --input: 31 45 61;                /* #1F2937 - Dark Inputs */
+  --input-foreground: 249 250 251;
+  --input-border: 59 130 246;       /* #3B82F6 - Blue Border */
   
-  --primary: var(--keybox-blue);
-  --primary-foreground: var(--keybox-navy);
+  --primary: 59 130 246;            /* #3B82F6 - Blue Primary */
+  --primary-foreground: 255 255 255;
+  --primary-hover: 37 99 235;       /* #2563EB - Darker Blue */
   
-  --secondary: 214 84% 25%;
-  --secondary-foreground: 0 0% 98%;
+  --secondary: 75 85 99;            /* #4B5563 - Dark Secondary */
+  --secondary-foreground: 249 250 251;
   
-  --muted: 214 84% 25%;
-  --muted-foreground: 220 13% 70%;
+  --accent: var(--keybox-yellow);
+  --accent-foreground: var(--keybox-navy);
   
-  --accent: 214 84% 25%;
-  --accent-foreground: 0 0% 98%;
+  --muted: 55 65 81;                /* #374151 - Muted Dark */
+  --muted-foreground: 156 163 175;  /* #9CA3AF - Muted Text */
   
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 98%;
-  
-  --border: 214 84% 25%;
-  --input: 214 84% 25%;
-  --ring: var(--keybox-blue);
+  --border: 75 85 99;               /* #4B5563 - Dark Borders */
+  --ring: 59 130 246;               /* #3B82F6 - Focus Ring */
 }
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
@@ -245,50 +222,56 @@ All colors MUST be HSL.
     @apply text-blue-900 font-medium text-sm mb-2 block;
   }
   
-  .hover-lift {
-    @apply transition-all duration-300 ease-out hover:shadow-floating;
-    transform: translateZ(0);
+  .professional-card {
+    @apply bg-white rounded-xl border border-gray-200 shadow-strong p-6 space-y-4;
   }
   
-  .hover-lift:hover {
-    transform: var(--hover-lift);
+  .modern-textarea {
+    @apply bg-white border-2 border-gray-300 rounded-lg px-4 py-3 text-gray-800 placeholder:text-gray-400 
+           transition-all duration-150 ease-in-out resize-none
+           focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none
+           shadow-sm hover:border-gray-400;
   }
   
-  .interactive-scale {
-    @apply transition-transform duration-200 ease-out;
+  .modern-select {
+    @apply bg-white border-2 border-gray-300 rounded-lg px-4 py-3 text-gray-800
+           transition-all duration-150 ease-in-out cursor-pointer
+           focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none
+           shadow-sm hover:border-gray-400;
   }
   
-  .interactive-scale:hover {
-    transform: var(--hover-scale);
+  .modern-badge {
+    @apply bg-gray-100 text-blue-900 border border-gray-300 px-3 py-1 rounded-full text-sm font-medium;
   }
   
-  .interactive-scale:active {
-    transform: var(--active-scale);
+  .modern-badge-selected {
+    @apply bg-blue-100 text-blue-900 border border-blue-300 px-3 py-1 rounded-full text-sm font-medium;
   }
   
-  .gradient-text {
-    @apply bg-gradient-to-r from-keybox-navy to-keybox-blue bg-clip-text text-transparent;
+  .modern-badge-accent {
+    @apply bg-yellow-100 text-yellow-900 border border-yellow-300 px-3 py-1 rounded-full text-sm font-medium;
   }
   
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
+  .modern-dropdown {
+    @apply bg-white border border-gray-300 rounded-lg shadow-medium max-h-64 overflow-y-auto;
   }
   
-  .animate-pulse-slow {
-    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  .modern-dropdown-item {
+    @apply px-4 py-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0
+           transition-colors duration-150 ease-in-out;
   }
   
-  /* Custom Scrollbar */
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
+  .modern-dropdown-item-selected {
+    @apply bg-blue-50 text-blue-900 font-medium;
   }
   
-  .custom-scrollbar::-webkit-scrollbar-track {
-    @apply bg-muted/30 rounded-full;
+  .glass-nav {
+    @apply bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm;
   }
   
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    @apply bg-primary/50 rounded-full hover:bg-primary/70;
+  .preview-box {
+    @apply bg-gray-50 border border-gray-300 rounded-lg p-4 text-gray-800 whitespace-pre-wrap 
+           font-mono text-sm shadow-sm;
   }
 }
 

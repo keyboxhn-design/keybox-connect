@@ -59,7 +59,7 @@ const Index = () => {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="min-h-screen bg-gradient-primary relative overflow-hidden"
+      className="min-h-screen bg-keybox-bg relative overflow-hidden"
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
