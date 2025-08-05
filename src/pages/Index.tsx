@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Package, MessageSquare, Sparkles, Zap } from "lucide-react";
+import { Package, MessageSquare, Sparkles, Zap, Users } from "lucide-react";
 import NotificacionesPaquetes from "@/components/NotificacionesPaquetes";
 import BancoMensajes from "@/components/BancoMensajes";
+import GestionClientes from "@/components/GestionClientes";
 
 const Index = () => {
-  const [activeModule, setActiveModule] = useState<"packages" | "messages" | null>(null);
+  const [activeModule, setActiveModule] = useState<"packages" | "messages" | "clients" | null>(null);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -47,6 +48,10 @@ const Index = () => {
 
   if (activeModule === "messages") {
     return <BancoMensajes onVolver={() => setActiveModule(null)} />;
+  }
+
+  if (activeModule === "clients") {
+    return <GestionClientes onVolver={() => setActiveModule(null)} />;
   }
 
   return (
@@ -122,7 +127,7 @@ const Index = () => {
         {/* Module cards */}
         <motion.div 
           variants={itemVariants}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
         >
           {/* Package Notifications Module */}
           <motion.div
@@ -190,6 +195,41 @@ const Index = () => {
               </p>
               <div className="flex items-center text-keybox-blue font-medium group-hover:translate-x-2 transition-transform duration-300">
                 Explorar →
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Client Management Module */}
+          <motion.div
+            whileHover={{ 
+              scale: 1.02,
+              rotateY: 5,
+              z: 50
+            }}
+            whileTap={{ scale: 0.98 }}
+            className="group cursor-pointer"
+            onClick={() => setActiveModule("clients")}
+          >
+            <div className="h-80 bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 p-8 shadow-elegant hover:shadow-glow transition-all duration-500 hover:bg-white/20">
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-16 h-16 bg-green-500/20 rounded-2xl flex items-center justify-center group-hover:bg-green-500/30 transition-colors duration-300">
+                  <Users className="w-8 h-8 text-green-400" />
+                </div>
+                <motion.div
+                  animate={{ scale: [1, 1.1, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <Sparkles className="w-6 h-6 text-green-400" />
+                </motion.div>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Gestión de Clientes
+              </h3>
+              <p className="text-white/70 mb-6 leading-relaxed">
+                Administra tu base de clientes KeyBox. Crea, edita y organiza información de contacto con búsqueda inteligente.
+              </p>
+              <div className="flex items-center text-green-400 font-medium group-hover:translate-x-2 transition-transform duration-300">
+                Gestionar →
               </div>
             </div>
           </motion.div>
