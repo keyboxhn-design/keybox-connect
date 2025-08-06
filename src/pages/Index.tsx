@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 import { Package, MessageSquare, Sparkles, Zap, Users } from "lucide-react";
 import NotificacionesPaquetes from "@/components/NotificacionesPaquetes";
 import BancoMensajes from "@/components/BancoMensajes";
@@ -59,7 +60,7 @@ const Index = () => {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="min-h-screen bg-keybox-bg relative overflow-hidden"
+      className="min-h-screen bg-background relative overflow-hidden transition-colors duration-300"
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -90,6 +91,11 @@ const Index = () => {
       </div>
 
       <div className="relative z-10 container mx-auto px-6 py-16">
+        {/* Theme Toggle */}
+        <div className="absolute top-8 right-8 z-20">
+          <ModeToggle />
+        </div>
+
         {/* Header with animated logo */}
         <motion.header variants={itemVariants} className="text-center mb-20">
           <motion.div 
@@ -112,13 +118,13 @@ const Index = () => {
           
           <motion.h1 
             variants={itemVariants}
-            className="text-6xl font-bold text-white mb-6 tracking-tight"
+            className="text-6xl font-bold text-foreground mb-6 tracking-tight"
           >
             Key<span className="text-keybox-yellow">Box</span>
           </motion.h1>
           <motion.p 
             variants={itemVariants}
-            className="text-xl text-white/80 max-w-2xl mx-auto leading-relaxed"
+            className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
           >
             Sistema ultra-moderno de notificaciones automatizadas para entregas de paquetes
           </motion.p>

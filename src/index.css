@@ -3,13 +3,18 @@
 @tailwind utilities;
 
 :root {
-  /* Professional Color Palette - High Contrast */
+  /* KeyBox Color Palette - Light Mode */
   --keybox-navy: 214 84% 23%;        /* #1E3A8A - Dark Blue Labels */
   --keybox-blue: 217 91% 53%;        /* #1D4ED8 - Primary Button */
   --keybox-blue-hover: 214 84% 40%;  /* #1E40AF - Button Hover */
   --keybox-yellow: 48 96% 53%;       /* #FACC15 - Accent/Badges */
   --keybox-bg: 214 90% 97%;          /* #F3F7FB - Light Blue Background */
   --keybox-input-border: 220 91% 56%; /* #2563EB - Input Borders */
+
+  /* KeyBox Color Palette - Dark Mode */
+  --keybox-dark-bg: 222 84% 4.9%;    /* #0F172A - Dark Blue Slate */
+  --keybox-dark-card: 215 25% 27%;   /* #1E293B - Dark Cards */
+  --keybox-dark-input: 210 24% 16%;  /* #1F2937 - Dark Inputs */
   
   /* Text Colors */
   --text-primary: 249 10% 98%;       /* #F9FAFB - Light text */
@@ -150,41 +155,43 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* KeyBox Dark Mode - Professional Blue Slate Theme */
+    --background: 222 84% 4.9%;       /* #0F172A - Dark Blue Slate */
+    --foreground: 248 100% 97%;       /* #F8FAFC - Light Text */
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 215 25% 27%;              /* #1E293B - Dark Cards */
+    --card-foreground: 248 100% 97%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 215 25% 27%;
+    --popover-foreground: 248 100% 97%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 217 91% 60%;           /* #3B82F6 - Blue Primary */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 210 24% 16%;         /* #1F2937 - Dark Secondary */
+    --secondary-foreground: 248 100% 97%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 210 24% 16%;             /* #1F2937 - Dark Muted */
+    --muted-foreground: 215 20% 65%;  /* #94A3B8 - Medium Gray */
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 48 96% 53%;             /* #FACC15 - KeyBox Yellow */
+    --accent-foreground: 214 84% 23%; /* Dark Blue Text */
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;         /* #EF4444 - Red */
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --border: 215 25% 35%;            /* Lighter border for dark mode */
+    --input: 210 24% 16%;             /* #1F2937 - Dark Input */
+    --ring: 217 91% 73%;              /* #60A5FA - Light Blue Focus */
+
+    --sidebar-background: 215 25% 27%;
+    --sidebar-foreground: 248 100% 97%;
+    --sidebar-primary: 217 91% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 210 24% 16%;
+    --sidebar-accent-foreground: 248 100% 97%;
+    --sidebar-border: 215 25% 35%;
+    --sidebar-ring: 217 91% 73%;
   }
 }
 
@@ -194,7 +201,14 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground transition-colors duration-300 ease-in-out;
+  }
+
+  /* Smooth transitions for theme switching */
+  *, *::before, *::after {
+    transition-property: color, background-color, border-color;
+    transition-duration: 300ms;
+    transition-timing-function: ease-in-out;
   }
 }
 
@@ -207,125 +221,104 @@ All colors MUST be HSL.
   }
   
   .modern-input {
-    @apply border-2 rounded-lg px-4 py-3 placeholder:text-gray-400 
+    @apply border-2 rounded-lg px-4 py-3 
            transition-all duration-150 ease-in-out
-           focus:ring-2 focus:ring-blue-500/20 focus:outline-none
-           shadow-sm;
-    background-color: #1F2937;
-    color: #F9FAFB;
-    border-color: #3B82F6;
+           focus:ring-2 focus:ring-primary/20 focus:outline-none
+           shadow-sm bg-background text-foreground
+           border-input placeholder:text-muted-foreground;
   }
   
   .modern-input:hover {
-    border-color: #60A5FA;
+    @apply border-ring;
   }
   
   .modern-input:focus {
-    border-color: #60A5FA;
+    @apply border-ring;
   }
   
   .modern-button {
     @apply font-medium px-6 py-3 rounded-lg shadow-medium 
            hover:shadow-strong active:scale-95 
            transition-all duration-150 ease-in-out
-           focus:outline-none focus:ring-2 focus:ring-blue-500/50;
-    background-color: #3B82F6;
-    color: #F9FAFB;
+           focus:outline-none focus:ring-2 focus:ring-primary/50
+           bg-primary text-primary-foreground;
   }
   
   .modern-button:hover {
-    background-color: #2563EB;
+    @apply bg-primary/90;
   }
   
   .modern-label {
-    @apply font-medium text-sm mb-2 block;
-    color: #60A5FA;
+    @apply font-medium text-sm mb-2 block text-foreground;
   }
   
   .professional-card {
-    @apply rounded-xl border shadow-strong p-6 space-y-4;
-    background-color: #1E293B;
-    border-color: #374151;
+    @apply rounded-xl border shadow-strong p-6 space-y-4 bg-card text-card-foreground;
+  }
+
+  .modern-card {
+    @apply rounded-xl border shadow-strong p-6 space-y-4 bg-card text-card-foreground;
   }
   
   .modern-textarea {
-    @apply border-2 rounded-lg px-4 py-3 placeholder:text-gray-400 
+    @apply border-2 rounded-lg px-4 py-3 
            transition-all duration-150 ease-in-out resize-none
-           focus:ring-2 focus:ring-blue-500/20 focus:outline-none
-           shadow-sm;
-    background-color: #1F2937;
-    color: #F9FAFB;
-    border-color: #3B82F6;
+           focus:ring-2 focus:ring-primary/20 focus:outline-none
+           shadow-sm bg-background text-foreground
+           border-input placeholder:text-muted-foreground;
   }
   
   .modern-textarea:hover {
-    border-color: #60A5FA;
+    @apply border-ring;
   }
   
   .modern-textarea:focus {
-    border-color: #60A5FA;
+    @apply border-ring;
   }
   
   .modern-select {
     @apply border-2 rounded-lg px-4 py-3
            transition-all duration-150 ease-in-out cursor-pointer
-           focus:ring-2 focus:ring-blue-500/20 focus:outline-none
-           shadow-sm;
-    background-color: #1F2937;
-    color: #F9FAFB;
-    border-color: #3B82F6;
+           focus:ring-2 focus:ring-primary/20 focus:outline-none
+           shadow-sm bg-background text-foreground
+           border-input;
   }
   
   .modern-select:hover {
-    border-color: #60A5FA;
+    @apply border-ring;
   }
   
   .modern-select:focus {
-    border-color: #60A5FA;
+    @apply border-ring;
   }
   
   .modern-badge {
-    @apply border px-3 py-1 rounded-full text-sm font-medium;
-    background-color: #374151;
-    color: #F9FAFB;
-    border-color: #4B5563;
+    @apply border px-3 py-1 rounded-full text-sm font-medium bg-muted text-muted-foreground;
   }
   
   .modern-badge-selected {
-    @apply border px-3 py-1 rounded-full text-sm font-medium;
-    background-color: #1E40AF;
-    color: #DBEAFE;
-    border-color: #3B82F6;
+    @apply border px-3 py-1 rounded-full text-sm font-medium bg-primary text-primary-foreground;
   }
   
   .modern-badge-accent {
-    @apply border px-3 py-1 rounded-full text-sm font-medium;
-    background-color: #92400E;
-    color: #FEF3C7;
-    border-color: #D97706;
+    @apply border px-3 py-1 rounded-full text-sm font-medium bg-accent text-accent-foreground;
   }
   
   .modern-dropdown {
-    @apply border rounded-lg shadow-medium max-h-64 overflow-y-auto;
-    background-color: #1E293B;
-    border-color: #374151;
+    @apply border rounded-lg shadow-medium max-h-64 overflow-y-auto bg-popover;
   }
   
   .modern-dropdown-item {
     @apply px-4 py-3 cursor-pointer border-b last:border-b-0
-           transition-colors duration-150 ease-in-out;
-    color: #F9FAFB;
-    border-color: #374151;
+           transition-colors duration-150 ease-in-out text-popover-foreground;
   }
   
   .modern-dropdown-item:hover {
-    background-color: #374151;
+    @apply bg-accent;
   }
   
   .modern-dropdown-item-selected {
-    @apply font-medium;
-    background-color: #1E40AF;
-    color: #DBEAFE;
+    @apply font-medium bg-primary text-primary-foreground;
   }
   
   .glass-nav {
@@ -336,10 +329,7 @@ All colors MUST be HSL.
   
   .preview-box {
     @apply border rounded-lg p-4 whitespace-pre-wrap 
-           font-mono text-sm shadow-sm;
-    background-color: #374151;
-    color: #F9FAFB;
-    border-color: #4B5563;
+           font-mono text-sm shadow-sm bg-muted text-muted-foreground;
   }
 }
 

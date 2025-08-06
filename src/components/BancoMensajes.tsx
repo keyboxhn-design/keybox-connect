@@ -9,6 +9,8 @@ import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import VariableSelector from "./VariableSelector";
+import MessageGeneratorModal from "./MessageGeneratorModal";
+import BulkMessageModal from "./BulkMessageModal";
 import { 
   ArrowLeft, 
   Save, 
@@ -21,7 +23,9 @@ import {
   Send,
   Hash,
   Search,
-  Sparkles
+  Sparkles,
+  Zap,
+  FileSpreadsheet
 } from "lucide-react";
 
 interface BancoMensajesProps {
@@ -59,6 +63,11 @@ const BancoMensajes = ({ onVolver }: BancoMensajesProps) => {
   const [cursorPosition, setCursorPosition] = useState(0);
   const [selectorPosition, setSelectorPosition] = useState({ x: 0, y: 0 });
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Message generation modals
+  const [showMessageModal, setShowMessageModal] = useState(false);
+  const [showBulkModal, setShowBulkModal] = useState(false);
+  const [selectedPlantillaForGeneration, setSelectedPlantillaForGeneration] = useState<Plantilla | null>(null);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -306,17 +315,27 @@ const BancoMensajes = ({ onVolver }: BancoMensajesProps) => {
     plantilla.variables_usadas.some(v => v.toLowerCase().includes(busquedaPlantilla.toLowerCase()))
   );
 
+  const openMessageGenerator = (plantilla: Plantilla) => {
+    setSelectedPlantillaForGeneration(plantilla);
+    setShowMessageModal(true);
+  };
+
+  const openBulkGenerator = (plantilla: Plantilla) => {
+    setSelectedPlantillaForGeneration(plantilla);
+    setShowBulkModal(true);
+  };
+
   return (
     <motion.div 
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="min-h-screen bg-gradient-primary relative"
+      className="min-h-screen bg-background relative"
     >
       {/* Header */}
       <motion.header 
         variants={itemVariants}
-        className="glass-card mx-6 pt-8 pb-6 px-8 mb-8"
+        className="modern-card mx-6 pt-8 pb-6 px-8 mb-8"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -324,17 +343,17 @@ const BancoMensajes = ({ onVolver }: BancoMensajesProps) => {
               variant="ghost"
               size="icon"
               onClick={onVolver}
-              className="hover-lift interactive-scale text-white hover:bg-white/20"
+              className="hover-lift interactive-scale text-foreground hover:bg-accent/20"
             >
               <ArrowLeft className="w-5 h-5" />
             </Button>
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-keybox-blue/20 rounded-2xl flex items-center justify-center">
-                <FileText className="w-6 h-6 text-keybox-blue" />
+              <div className="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center">
+                <FileText className="w-6 h-6 text-primary" />
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-white">Banco de Mensajes</h1>
-                <p className="text-white/70">Editor avanzado con variables dinámicas y autocompletado</p>
+                <h1 className="text-3xl font-bold text-foreground">Banco de Mensajes</h1>
+                <p className="text-muted-foreground">Editor avanzado con variables dinámicas y autocompletado</p>
               </div>
             </div>
           </div>
@@ -342,7 +361,7 @@ const BancoMensajes = ({ onVolver }: BancoMensajesProps) => {
             <Button
               onClick={limpiarEditor}
               variant="ghost"
-              className="text-white hover:bg-white/20"
+              className="text-foreground hover:bg-accent/20"
             >
               <Plus className="w-4 h-4 mr-2" />
               Nueva Plantilla
@@ -351,7 +370,7 @@ const BancoMensajes = ({ onVolver }: BancoMensajesProps) => {
               onClick={duplicarPlantilla}
               disabled={!plantillaSeleccionada}
               variant="ghost"
-              className="text-white hover:bg-white/20"
+              className="text-foreground hover:bg-accent/20"
             >
               <Copy className="w-4 h-4 mr-2" />
               Duplicar
@@ -364,19 +383,19 @@ const BancoMensajes = ({ onVolver }: BancoMensajesProps) => {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Panel Lateral - Plantillas */}
           <motion.div variants={itemVariants} className="lg:col-span-1">
-            <Card className="glass-card border-white/20 shadow-floating h-fit">
+            <Card className="modern-card shadow-floating h-fit">
               <CardHeader>
-                <CardTitle className="text-white flex items-center gap-2">
+                <CardTitle className="text-card-foreground flex items-center gap-2">
                   <Search className="w-5 h-5" />
                   Plantillas Guardadas
                 </CardTitle>
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/50 w-4 h-4" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                   <Input
                     placeholder="Buscar plantillas..."
                     value={busquedaPlantilla}
                     onChange={(e) => setBusquedaPlantilla(e.target.value)}
-                    className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-white/50"
+                    className="modern-input pl-10"
                   />
                 </div>
               </CardHeader>
@@ -387,30 +406,60 @@ const BancoMensajes = ({ onVolver }: BancoMensajesProps) => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}
-                    onClick={() => cargarPlantilla(plantilla)}
-                    className={`p-4 rounded-xl cursor-pointer transition-all duration-300 hover-lift ${
+                    className={`p-4 rounded-xl transition-all duration-300 hover-lift group ${
                       plantillaSeleccionada?.id === plantilla.id
-                        ? 'bg-keybox-blue/20 border border-keybox-blue/40'
-                        : 'bg-white/5 hover:bg-white/10'
+                        ? 'bg-primary/20 border border-primary/40'
+                        : 'bg-muted/50 hover:bg-muted/70'
                     }`}
                   >
-                    <h3 className="font-semibold text-white text-sm mb-2">{plantilla.titulo}</h3>
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 
+                        className="font-semibold text-card-foreground text-sm cursor-pointer hover:text-primary"
+                        onClick={() => cargarPlantilla(plantilla)}
+                      >
+                        {plantilla.titulo}
+                      </h3>
+                      <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            openMessageGenerator(plantilla);
+                          }}
+                          className="h-6 w-6 p-0 hover:bg-primary/20"
+                        >
+                          <Zap className="w-3 h-3 text-primary" />
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            openBulkGenerator(plantilla);
+                          }}
+                          className="h-6 w-6 p-0 hover:bg-primary/20"
+                        >
+                          <FileSpreadsheet className="w-3 h-3 text-primary" />
+                        </Button>
+                      </div>
+                    </div>
                     <div className="flex flex-wrap gap-1 mb-2">
                       {plantilla.variables_usadas.slice(0, 3).map((variable) => (
                         <Badge 
                           key={variable} 
-                          className="text-xs bg-keybox-yellow/20 text-keybox-yellow border-keybox-yellow/30"
+                          className="modern-badge-accent text-xs"
                         >
                           {variable}
                         </Badge>
                       ))}
                       {plantilla.variables_usadas.length > 3 && (
-                        <Badge className="text-xs bg-white/10 text-white/70">
+                        <Badge className="modern-badge text-xs">
                           +{plantilla.variables_usadas.length - 3}
                         </Badge>
                       )}
                     </div>
-                    <p className="text-xs text-white/60 line-clamp-2">
+                    <p className="text-xs text-muted-foreground line-clamp-2">
                       {plantilla.contenido_markdown.substring(0, 60)}...
                     </p>
                   </motion.div>
@@ -638,6 +687,26 @@ const BancoMensajes = ({ onVolver }: BancoMensajesProps) => {
         onClose={() => setShowVariableSelector(false)}
         onSelectVariable={insertarVariable}
         position={selectorPosition}
+      />
+
+      {/* Message Generation Modal */}
+      <MessageGeneratorModal
+        plantilla={selectedPlantillaForGeneration}
+        isOpen={showMessageModal}
+        onClose={() => {
+          setShowMessageModal(false);
+          setSelectedPlantillaForGeneration(null);
+        }}
+      />
+
+      {/* Bulk Message Modal */}
+      <BulkMessageModal
+        plantilla={selectedPlantillaForGeneration}
+        isOpen={showBulkModal}
+        onClose={() => {
+          setShowBulkModal(false);
+          setSelectedPlantillaForGeneration(null);
+        }}
       />
     </motion.div>
   );
