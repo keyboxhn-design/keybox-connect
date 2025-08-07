@@ -424,9 +424,9 @@ ${domicilioInfo}${esperarMensaje}🙌 ¡Gracias por preferir KeyBox!`;
                       transition={{ delay: 0.1 }}
                       className="space-y-2"
                     >
-                      <Label htmlFor="numeroCliente" className="text-keybox-navy font-medium">
-                        Número de Cliente KeyBox *
-                      </Label>
+                       <Label htmlFor="numeroCliente" className="modern-label required">
+                         Número de Cliente KeyBox
+                       </Label>
                       <div className="relative">
                         <Input
                           id="numeroCliente"
@@ -455,9 +455,9 @@ ${domicilioInfo}${esperarMensaje}🙌 ¡Gracias por preferir KeyBox!`;
                       transition={{ delay: 0.2 }}
                       className="space-y-2"
                     >
-                      <Label htmlFor="nombre" className="text-keybox-navy font-medium">
-                        Nombre del Destinatario *
-                      </Label>
+                       <Label htmlFor="nombre" className="modern-label required">
+                         Nombre del Destinatario
+                       </Label>
                       <Input
                         id="nombre"
                         value={formData.nombre}
@@ -474,12 +474,12 @@ ${domicilioInfo}${esperarMensaje}🙌 ¡Gracias por preferir KeyBox!`;
                     transition={{ delay: 0.3 }}
                     className="space-y-2"
                   >
-                    <Label className="text-keybox-navy font-medium">
-                      Modalidades de Envío * 
-                      <Badge variant="secondary" className="ml-2 text-xs">
-                        Selección múltiple
-                      </Badge>
-                    </Label>
+                     <Label className="modern-label required">
+                       Modalidades de Envío
+                       <Badge variant="outline" className="ml-2 text-xs modern-badge">
+                         Selección múltiple
+                       </Badge>
+                     </Label>
                     <MultiSelect
                       options={modalidadOptions}
                       value={formData.modalidades}
@@ -551,9 +551,9 @@ ${domicilioInfo}${esperarMensaje}🙌 ¡Gracias por preferir KeyBox!`;
                       transition={{ delay: 0.1 }}
                       className="space-y-2"
                     >
-                      <Label htmlFor="cantidad" className="text-keybox-navy font-medium">
-                        Cantidad de Paquetes *
-                      </Label>
+                       <Label htmlFor="cantidad" className="modern-label required">
+                         Cantidad de Paquetes
+                       </Label>
                       <Input
                         id="cantidad"
                         type="number"
@@ -571,9 +571,9 @@ ${domicilioInfo}${esperarMensaje}🙌 ¡Gracias por preferir KeyBox!`;
                       transition={{ delay: 0.2 }}
                       className="space-y-2"
                     >
-                      <Label htmlFor="peso" className="text-keybox-navy font-medium">
-                        Peso Total (lbs) *
-                      </Label>
+                       <Label htmlFor="peso" className="modern-label required">
+                         Peso Total (lbs)
+                       </Label>
                       <Input
                         id="peso"
                         type="number"
@@ -593,17 +593,17 @@ ${domicilioInfo}${esperarMensaje}🙌 ¡Gracias por preferir KeyBox!`;
                     transition={{ delay: 0.3 }}
                     className="space-y-2"
                   >
-                    <Label htmlFor="trackings" className="text-keybox-navy font-medium">
-                      Códigos de Tracking (uno por línea) *
-                    </Label>
-                    <Textarea
-                      id="trackings"
-                      value={formData.trackings}
-                      onChange={(e) => setFormData({...formData, trackings: e.target.value})}
-                      placeholder="1Z32145US01&#10;9274812831HN"
-                      rows={4}
-                      className="modern-input font-mono"
-                    />
+                     <Label htmlFor="trackings" className="modern-label required">
+                       Códigos de Tracking (uno por línea)
+                     </Label>
+                     <Textarea
+                       id="trackings"
+                       value={formData.trackings}
+                       onChange={(e) => setFormData({...formData, trackings: e.target.value})}
+                       placeholder="1Z32145US01&#10;9274812831HN"
+                       rows={4}
+                       className="modern-textarea font-mono"
+                     />
                   </motion.div>
 
                   <motion.div 
@@ -612,9 +612,9 @@ ${domicilioInfo}${esperarMensaje}🙌 ¡Gracias por preferir KeyBox!`;
                     transition={{ delay: 0.4 }}
                     className="space-y-2"
                   >
-                    <Label htmlFor="monto" className="text-keybox-navy font-medium">
-                      Monto Total (Lempiras) *
-                    </Label>
+                     <Label htmlFor="monto" className="modern-label required">
+                       Monto Total (Lempiras)
+                     </Label>
                     <Input
                       id="monto"
                       type="number"
@@ -638,9 +638,9 @@ ${domicilioInfo}${esperarMensaje}🙌 ¡Gracias por preferir KeyBox!`;
                         checked={formData.incluirDomicilio}
                         onCheckedChange={(checked) => setFormData({...formData, incluirDomicilio: checked as boolean})}
                       />
-                      <Label htmlFor="incluirDomicilio" className="text-keybox-navy font-medium">
-                        Incluir información de domicilio
-                      </Label>
+                       <Label htmlFor="incluirDomicilio" className="modern-label">
+                         Incluir información de domicilio
+                       </Label>
                     </div>
 
                     {formData.incluirDomicilio && (
@@ -649,7 +649,7 @@ ${domicilioInfo}${esperarMensaje}🙌 ¡Gracias por preferir KeyBox!`;
                         animate={{ opacity: 1, height: 'auto' }}
                         className="space-y-3"
                       >
-                        <Label className="text-keybox-navy">Tipos de Domicilio</Label>
+                        <Label className="modern-label">Tipos de Domicilio</Label>
                         <MultiSelect
                           options={domicilioOptions}
                           value={formData.tiposDomicilio}
@@ -665,9 +665,9 @@ ${domicilioInfo}${esperarMensaje}🙌 ¡Gracias por preferir KeyBox!`;
                         checked={formData.esperarMasPaquetes}
                         onCheckedChange={(checked) => setFormData({...formData, esperarMasPaquetes: checked as boolean})}
                       />
-                      <Label htmlFor="esperarMasPaquetes" className="text-keybox-navy font-medium">
-                        ¿Desea esperar más paquetes?
-                      </Label>
+                       <Label htmlFor="esperarMasPaquetes" className="modern-label">
+                         ¿Desea esperar más paquetes?
+                       </Label>
                     </div>
                   </motion.div>
 
@@ -717,9 +717,9 @@ ${domicilioInfo}${esperarMensaje}🙌 ¡Gracias por preferir KeyBox!`;
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 text-sm whitespace-pre-wrap font-mono max-h-96 overflow-y-auto custom-scrollbar">
-                      {mensajeGenerado}
-                    </div>
+                     <div className="preview-box">
+                       {mensajeGenerado}
+                     </div>
                   </CardContent>
                 </Card>
 

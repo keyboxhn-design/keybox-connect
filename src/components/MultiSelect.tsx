@@ -72,19 +72,19 @@ const MultiSelect = ({
       <Button
         variant="outline"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full justify-between bg-white/10 border-white/20 text-white hover:bg-white/20 min-h-12"
+        className="w-full justify-between modern-dropdown min-h-12"
       >
         <div className="flex items-center gap-2 flex-wrap flex-1">
-          {value.length === 0 ? (
-            <span className="text-white/50">{placeholder}</span>
-          ) : (
+           {value.length === 0 ? (
+             <span className="text-muted-foreground">{placeholder}</span>
+           ) : (
             <>
               {getDisplayedOptions().map((option) => (
-                <Badge
-                  key={option.value}
-                  variant="secondary"
-                  className="bg-keybox-blue/20 text-keybox-blue border-keybox-blue/30 gap-1"
-                >
+                 <Badge
+                   key={option.value}
+                   variant="outline"
+                   className="modern-badge gap-1"
+                 >
                   {option.icon}
                   {option.label}
                   <X
@@ -96,14 +96,14 @@ const MultiSelect = ({
                   />
                 </Badge>
               ))}
-              {getRemainingCount() > 0 && (
-                <Badge
-                  variant="outline"
-                  className="bg-white/10 text-white/70 border-white/30"
-                >
-                  +{getRemainingCount()} más
-                </Badge>
-              )}
+               {getRemainingCount() > 0 && (
+                 <Badge
+                   variant="outline"
+                   className="modern-badge"
+                 >
+                   +{getRemainingCount()} más
+                 </Badge>
+               )}
             </>
           )}
         </div>
@@ -123,7 +123,7 @@ const MultiSelect = ({
             exit={{ opacity: 0, y: -10 }}
             className="absolute top-full left-0 right-0 mt-2 z-50"
           >
-            <Card className="glass-card border-white/20 shadow-floating">
+            <Card className="modern-dropdown-content">
               <CardContent className="p-2 max-h-64 overflow-y-auto custom-scrollbar">
                 {options.map((option, index) => {
                   const isSelected = value.includes(option.value);
@@ -134,38 +134,38 @@ const MultiSelect = ({
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05 }}
                       onClick={() => toggleOption(option.value)}
-                      className={`
-                        flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-all duration-200
-                        ${isSelected 
-                          ? 'bg-keybox-blue/20 border border-keybox-blue/40' 
-                          : 'hover:bg-white/10'
-                        }
-                      `}
+                       className={`
+                         flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-all duration-200
+                         ${isSelected 
+                           ? 'bg-primary/10 border border-primary/30 text-primary' 
+                           : 'hover:bg-muted/50 text-foreground'
+                         }
+                       `}
                     >
-                      <div className={`
-                        w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all
-                        ${isSelected 
-                          ? 'bg-keybox-blue border-keybox-blue' 
-                          : 'border-white/30'
-                        }
-                      `}>
-                        {isSelected && (
-                          <Check className="w-3 h-3 text-white" />
-                        )}
+                       <div className={`
+                         w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all
+                         ${isSelected 
+                           ? 'bg-primary border-primary' 
+                           : 'border-muted-foreground/30'
+                         }
+                       `}>
+                         {isSelected && (
+                           <Check className="w-3 h-3 text-primary-foreground" />
+                         )}
                       </div>
                       
                       <div className="flex items-center gap-2 flex-1">
-                        {option.icon && (
-                          <div className="w-5 h-5 text-white/70">
-                            {option.icon}
-                          </div>
-                        )}
-                        <div>
-                          <div className="font-medium text-white">{option.label}</div>
-                          {option.description && (
-                            <div className="text-xs text-white/60">{option.description}</div>
-                          )}
-                        </div>
+                         {option.icon && (
+                           <div className="w-5 h-5 text-muted-foreground">
+                             {option.icon}
+                           </div>
+                         )}
+                         <div>
+                           <div className="font-medium">{option.label}</div>
+                           {option.description && (
+                             <div className="text-xs text-muted-foreground">{option.description}</div>
+                           )}
+                         </div>
                       </div>
                     </motion.div>
                   );
