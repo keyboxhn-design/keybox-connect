@@ -237,8 +237,25 @@ All colors MUST be HSL.
   }
 }
 
-/* Professional Form & UI Components */
+/* Estilos adicionales para labels y textos específicos */
 @layer components {
+  /* Labels siempre en negro */
+  label, .label {
+    color: #000000 !important;
+  }
+  
+  /* Texto de labels en formularios */
+  .form-label {
+    color: #000000 !important;
+    font-weight: 500;
+  }
+  
+  /* Labels en shadcn-ui */
+  [data-radix-collection-item] label,
+  .radix-label {
+    color: #000000 !important;
+  }
+  
   .form-card {
     @apply rounded-xl border shadow-strong p-8 space-y-6;
     background-color: #1E293B;
@@ -274,7 +291,8 @@ All colors MUST be HSL.
   }
   
   .modern-label {
-    @apply font-medium text-sm mb-2 block text-foreground;
+    @apply font-medium text-sm mb-2 block;
+    color: #000000; /* Negro forzado para labels */
   }
   
   .professional-card {
