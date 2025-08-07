@@ -37,25 +37,25 @@
   --primary-hover: 217 91% 53%;     /* Slightly darker blue for hover */
   
   /* Background System */
-  --background: 210 11% 15%;        /* #111827 - Dark background */
-  --foreground: 249 10% 98%;        /* #F9FAFB - Light text */
+  --background: 222 84% 4.9%;        /* #0F172A - Dark background */
+  --foreground: 0 0% 100%;          /* #FFFFFF - White text */
   
   /* Card & Input System */
   --card: 215 25% 27%;              /* #1E293B - Dark cards */
-  --card-foreground: 249 10% 98%;   /* #F9FAFB - Light text */
+  --card-foreground: 0 0% 100%;     /* #FFFFFF - White text */
   --input: 210 24% 16%;             /* #1F2937 - Dark input background */
-  --input-foreground: 215 25% 27%;  /* #F9FAFB - Light text */
+  --input-foreground: 0 0% 100%;    /* #FFFFFF - White text */
   --input-border: 217 91% 60%;      /* #3B82F6 - Blue borders */
   
   /* Secondary & Accent */
   --secondary: 215 25% 27%;         /* #1E293B - Same as cards */
-  --secondary-foreground: 215 25% 27%; /* #F9FAFB - Light text */
+  --secondary-foreground: 0 0% 100%; /* #FFFFFF - White text */
   --accent: var(--keybox-yellow);
   --accent-foreground: var(--keybox-navy);
   
   /* Muted & Borders */
   --muted: 210 24% 16%;             /* #1F2937 - Same as inputs */
-  --muted-foreground: 249 10% 98%;  /* #F9FAFB - Light text for badges */
+  --muted-foreground: 0 0% 100%;    /* #FFFFFF - White text for badges */
   --border: 215 25% 35%;            /* Lighter than cards for borders */
   --ring: 217 91% 60%;              /* #3B82F6 - Blue focus ring */
   
@@ -67,38 +67,38 @@
   
   /* Popover */
   --popover: var(--card);
-  --popover-foreground: var(--card-foreground);
+  --popover-foreground: 0 0% 100%;  /* #FFFFFF - White text */
   
   /* Radius */
   --radius: 0.5rem;
 }
 
 .dark {
-  --background: 17 24 39;           /* #111827 - Dark Mode Base */
-  --foreground: 249 250 251;        /* #F9FAFB - Light Text */
+  --background: 222 84% 4.9%;           /* #0F172A - Dark Mode Base */
+  --foreground: 0 0% 100%;              /* #FFFFFF - White Text */
   
-  --card: 30 41 59;                 /* #1E293B - Dark Cards */
-  --card-foreground: 249 250 251;
+  --card: 215 25% 27%;                  /* #1E293B - Dark Cards */
+  --card-foreground: 0 0% 100%;         /* #FFFFFF - White text */
   
-  --input: 31 45 61;                /* #1F2937 - Dark Inputs */
-  --input-foreground: 249 250 251;
-  --input-border: 59 130 246;       /* #3B82F6 - Blue Border */
+  --input: 210 24% 16%;                 /* #1F2937 - Dark Inputs */
+  --input-foreground: 0 0% 100%;        /* #FFFFFF - White text */
+  --input-border: 217 91% 60%;          /* #3B82F6 - Blue Border */
   
-  --primary: 59 130 246;            /* #3B82F6 - Blue Primary */
-  --primary-foreground: 255 255 255;
-  --primary-hover: 37 99 235;       /* #2563EB - Darker Blue */
+  --primary: 217 91% 60%;               /* #3B82F6 - Blue Primary */
+  --primary-foreground: 0 0% 100%;      /* White text */
+  --primary-hover: 214 84% 40%;         /* #2563EB - Darker Blue */
   
-  --secondary: 75 85 99;            /* #4B5563 - Dark Secondary */
-  --secondary-foreground: 249 250 251;
+  --secondary: 210 24% 16%;             /* #1F2937 - Dark Secondary */
+  --secondary-foreground: 0 0% 100%;    /* #FFFFFF - White text */
   
   --accent: var(--keybox-yellow);
   --accent-foreground: var(--keybox-navy);
   
-  --muted: 55 65 81;                /* #374151 - Muted Dark */
-  --muted-foreground: 156 163 175;  /* #9CA3AF - Muted Text */
+  --muted: 210 24% 16%;                 /* #1F2937 - Muted Dark */
+  --muted-foreground: 0 0% 100%;        /* #FFFFFF - White text */
   
-  --border: 75 85 99;               /* #4B5563 - Dark Borders */
-  --ring: 59 130 246;               /* #3B82F6 - Focus Ring */
+  --border: 215 25% 35%;                /* #4B5563 - Dark Borders */
+  --ring: 217 91% 60%;                  /* #3B82F6 - Focus Ring */
 }
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
@@ -107,27 +107,27 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* MODO OSCURO POR DEFECTO - ESTAS SON LAS VARIABLES QUE REALMENTE SE USAN */
+    /* MODO OSCURO TOTAL - TODAS LAS VARIABLES EN OSCURO CON TEXTO BLANCO */
     --background: 222 84% 4.9%;       /* #0F172A - Dark background */
-    --foreground: 248 100% 97%;       /* #F8FAFC - Light text */
+    --foreground: 0 0% 100%;          /* #FFFFFF - White text */
 
     --card: 215 25% 27%;              /* #1E293B - Dark cards */
-    --card-foreground: 248 100% 97%;  /* #F8FAFC - Light text */
+    --card-foreground: 0 0% 100%;     /* #FFFFFF - White text */
 
     --popover: 215 25% 27%;           /* #1E293B - Dark popover */
-    --popover-foreground: 248 100% 97%; /* #F8FAFC - Light text */
+    --popover-foreground: 0 0% 100%;  /* #FFFFFF - White text */
 
     --primary: 217 91% 60%;           /* #3B82F6 - Blue primary */
     --primary-foreground: 0 0% 100%;  /* White text */
 
     --secondary: 210 24% 16%;         /* #1F2937 - Dark secondary */
-    --secondary-foreground: 248 100% 97%; /* Light text */
+    --secondary-foreground: 0 0% 100%; /* #FFFFFF - White text */
 
     --muted: 210 24% 16%;             /* #1F2937 - Dark muted */
-    --muted-foreground: 215 20% 65%;  /* #94A3B8 - Medium gray */
+    --muted-foreground: 0 0% 100%;    /* #FFFFFF - White text */
 
     --accent: 48 96% 53%;             /* #FACC15 - KeyBox yellow */
-    --accent-foreground: 214 84% 23%; /* Dark blue text */
+    --accent-foreground: 222 84% 4.9%; /* Dark background for contrast */
 
     --destructive: 0 84% 60%;         /* #EF4444 - Red */
     --destructive-foreground: 0 0% 100%;
@@ -138,38 +138,38 @@ All colors MUST be HSL.
 
     --radius: 0.5rem;
 
-    --sidebar-background: 215 25% 27%;
-    --sidebar-foreground: 248 100% 97%;
-    --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 24% 16%;
-    --sidebar-accent-foreground: 248 100% 97%;
-    --sidebar-border: 215 25% 35%;
-    --sidebar-ring: 217 91% 73%;
+    --sidebar-background: 215 25% 27%; /* Dark sidebar */
+    --sidebar-foreground: 0 0% 100%;   /* White text */
+    --sidebar-primary: 217 91% 60%;    /* Blue primary */
+    --sidebar-primary-foreground: 0 0% 100%; /* White text */
+    --sidebar-accent: 210 24% 16%;     /* Dark accent */
+    --sidebar-accent-foreground: 0 0% 100%; /* White text */
+    --sidebar-border: 215 25% 35%;     /* Light border */
+    --sidebar-ring: 217 91% 73%;       /* Light blue ring */
   }
 
   .dark {
     /* KeyBox Dark Mode - Professional Blue Slate Theme */
     --background: 222 84% 4.9%;       /* #0F172A - Dark Blue Slate */
-    --foreground: 248 100% 97%;       /* #F8FAFC - Light Text */
+    --foreground: 0 0% 100%;          /* #FFFFFF - White Text */
 
     --card: 215 25% 27%;              /* #1E293B - Dark Cards */
-    --card-foreground: 248 100% 97%;
+    --card-foreground: 0 0% 100%;     /* #FFFFFF - White text */
 
-    --popover: 215 25% 27%;
-    --popover-foreground: 248 100% 97%;
+    --popover: 215 25% 27%;           /* #1E293B - Dark popover */
+    --popover-foreground: 0 0% 100%;  /* #FFFFFF - White text */
 
     --primary: 217 91% 60%;           /* #3B82F6 - Blue Primary */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 210 24% 16%;         /* #1F2937 - Dark Secondary */
-    --secondary-foreground: 248 100% 97%;
+    --secondary-foreground: 0 0% 100%; /* #FFFFFF - White text */
 
     --muted: 210 24% 16%;             /* #1F2937 - Dark Muted */
-    --muted-foreground: 215 20% 65%;  /* #94A3B8 - Medium Gray */
+    --muted-foreground: 0 0% 100%;    /* #FFFFFF - White text */
 
     --accent: 48 96% 53%;             /* #FACC15 - KeyBox Yellow */
-    --accent-foreground: 214 84% 23%; /* Dark Blue Text */
+    --accent-foreground: 222 84% 4.9%; /* Dark background for contrast */
 
     --destructive: 0 84% 60%;         /* #EF4444 - Red */
     --destructive-foreground: 0 0% 100%;
@@ -178,14 +178,14 @@ All colors MUST be HSL.
     --input: 210 24% 16%;             /* #1F2937 - Dark Input */
     --ring: 217 91% 73%;              /* #60A5FA - Light Blue Focus */
 
-    --sidebar-background: 215 25% 27%;
-    --sidebar-foreground: 248 100% 97%;
-    --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 24% 16%;
-    --sidebar-accent-foreground: 248 100% 97%;
-    --sidebar-border: 215 25% 35%;
-    --sidebar-ring: 217 91% 73%;
+    --sidebar-background: 215 25% 27%; /* Dark sidebar */
+    --sidebar-foreground: 0 0% 100%;   /* White text */
+    --sidebar-primary: 217 91% 60%;    /* Blue primary */
+    --sidebar-primary-foreground: 0 0% 100%; /* White text */
+    --sidebar-accent: 210 24% 16%;     /* Dark accent */
+    --sidebar-accent-foreground: 0 0% 100%; /* White text */
+    --sidebar-border: 215 25% 35%;     /* Light border */
+    --sidebar-ring: 217 91% 73%;       /* Light blue ring */
   }
 
   .light {
