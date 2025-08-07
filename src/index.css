@@ -42,14 +42,14 @@
   
   /* Card & Input System */
   --card: 215 25% 27%;              /* #1E293B - Dark cards */
-  --card-foreground: 249 10% 98%;   /* #F9FAFB - Light text */
+  --card-foreground: 215 25% 27%%;   /* #F9FAFB - Light text */
   --input: 210 24% 16%;             /* #1F2937 - Dark input background */
   --input-foreground: 249 10% 98%;  /* #F9FAFB - Light text */
   --input-border: 217 91% 60%;      /* #3B82F6 - Blue borders */
   
   /* Secondary & Accent */
   --secondary: 215 25% 27%;         /* #1E293B - Same as cards */
-  --secondary-foreground: 249 10% 98%; /* #F9FAFB - Light text */
+  --secondary-foreground: 215 25% 27%; /* #F9FAFB - Light text */
   --accent: var(--keybox-yellow);
   --accent-foreground: var(--keybox-navy);
   
