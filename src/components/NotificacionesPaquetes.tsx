@@ -189,8 +189,24 @@ const NotificacionesPaquetes = ({ onVolver }: NotificacionesPaquetesProps) => {
         .map(t => `• ${t.trim()}`)
         .join('\n');
 
-      // Información de modalidades
-      const modalidadesTexto = formData.modalidades.join(' + ');
+      // Función para obtener emoji según modalidad
+      const getModalidadEmoji = (modalidad: string) => {
+        switch (modalidad.toLowerCase()) {
+          case 'standard':
+            return '✈️';
+          case 'premium':
+            return '✈️';
+          case 'marítimo':
+            return '🚢';
+          default:
+            return '';
+        }
+      };
+
+      // Información de modalidades con emojis dinámicos
+      const modalidadesTexto = formData.modalidades.map(modalidad => 
+        `${modalidad} ${getModalidadEmoji(modalidad)}`
+      ).join(' + ');
 
       // Información de domicilio
       let domicilioInfo = "";
@@ -199,7 +215,7 @@ const NotificacionesPaquetes = ({ onVolver }: NotificacionesPaquetesProps) => {
           const precio = tipo === "TGU" ? "L70" : "L125";
           return `📍 ${tipo} desde ${precio}`;
         }).join('\n');
-        domicilioInfo = `${domiciliosTexto}\n⛔ No se acepta efectivo\n\n`;
+        domicilioInfo = `${domiciliosTexto}\n⛔ No se acepta efectivo\n\n🛵Envíos a la puerta de tu casa o donde necesites a cualquier parte de Honduras (consultar con asesor):\n\n`;
       }
 
       // Mensaje de esperar más paquetes
