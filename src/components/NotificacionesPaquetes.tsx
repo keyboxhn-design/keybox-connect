@@ -66,6 +66,8 @@ const NotificacionesPaquetes = ({ onVolver }: NotificacionesPaquetesProps) => {
     incluirDomicilio: false,
     tiposDomicilio: [] as string[],
     esperarMasPaquetes: false,
+    precioTGU: "70",
+    precioNacional: "125",
   });
 
   const [mensajeGenerado, setMensajeGenerado] = useState("");
@@ -212,7 +214,7 @@ const NotificacionesPaquetes = ({ onVolver }: NotificacionesPaquetesProps) => {
       let domicilioInfo = "";
       if (formData.incluirDomicilio && formData.tiposDomicilio.length > 0) {
         const domiciliosTexto = formData.tiposDomicilio.map(tipo => {
-          const precio = tipo === "TGU" ? "L70" : "L125";
+          const precio = tipo === "TGU" ? `L${formData.precioTGU}` : `L${formData.precioNacional}`;
           return `📍 ${tipo} desde ${precio}`;
         }).join('\n');
         domicilioInfo = `${domiciliosTexto}\n⛔ No se acepta efectivo\n\n🛵Envíos a la puerta de tu casa o donde necesites a cualquier parte de Honduras (consultar con asesor):\n\n`;
@@ -329,7 +331,30 @@ ${domicilioInfo}${esperarMensaje}🙌 ¡Gracias por preferir KeyBox!`;
     });
   };
 
-  // Abrir WhatsApp
+  // Abrir WhatsApp Web
+  const abrirWhatsAppWeb = () => {
+    if (!cliente?.telefono) {
+      toast({
+        title: "⚠️ Sin teléfono",
+        description: "No hay número de teléfono registrado para este cliente",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const telefonoLimpio = cliente.telefono.replace(/[\s\-\+]/g, '');
+    const telefonoWhatsApp = telefonoLimpio.startsWith('504') ? telefonoLimpio : `504${telefonoLimpio}`;
+    const mensaje = encodeURIComponent(mensajeGenerado);
+    window.open(`https://web.whatsapp.com/send?phone=${telefonoWhatsApp}&text=${mensaje}`, '_blank');
+  };
+
+  // Abrir chat con variable de nombre
+  const abrirChatConNombre = () => {
+    const mensaje = encodeURIComponent(`Chat para ${formData.nombre} - ${mensajeGenerado}`);
+    window.open(`https://web.whatsapp.com/send?text=${mensaje}`, '_blank');
+  };
+
+  // Abrir WhatsApp (móvil)
   const abrirWhatsApp = () => {
     if (!cliente?.telefono) {
       toast({
@@ -663,7 +688,7 @@ ${domicilioInfo}${esperarMensaje}🙌 ¡Gracias por preferir KeyBox!`;
                       <motion.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
-                        className="space-y-3"
+                        className="space-y-4"
                       >
                         <Label className="modern-label">Tipos de Domicilio</Label>
                         <MultiSelect
@@ -672,6 +697,34 @@ ${domicilioInfo}${esperarMensaje}🙌 ¡Gracias por preferir KeyBox!`;
                           onChange={(value) => setFormData({...formData, tiposDomicilio: value})}
                           placeholder="Seleccionar zonas de domicilio..."
                         />
+                        
+                        {/* Campos editables para precios */}
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="space-y-2">
+                            <Label htmlFor="precioTGU" className="modern-label">Precio TGU (L)</Label>
+                            <Input
+                              id="precioTGU"
+                              type="number"
+                              min="0"
+                              value={formData.precioTGU}
+                              onChange={(e) => setFormData({...formData, precioTGU: e.target.value})}
+                              placeholder="70"
+                              className="modern-input"
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="precioNacional" className="modern-label">Precio Nacional (L)</Label>
+                            <Input
+                              id="precioNacional"
+                              type="number"
+                              min="0"
+                              value={formData.precioNacional}
+                              onChange={(e) => setFormData({...formData, precioNacional: e.target.value})}
+                              placeholder="125"
+                              className="modern-input"
+                            />
+                          </div>
+                        </div>
                       </motion.div>
                     )}
 
@@ -774,12 +827,30 @@ ${domicilioInfo}${esperarMensaje}🙌 ¡Gracias por preferir KeyBox!`;
                       </Button>
                       
                       <Button
-                        onClick={abrirWhatsApp}
+                        onClick={abrirChatConNombre}
+                        variant="outline"
+                        className="w-full py-3"
+                      >
+                        <MessageSquare className="w-4 h-4 mr-2" />
+                        Abrir Chat con {formData.nombre}
+                      </Button>
+                      
+                      <Button
+                        onClick={abrirWhatsAppWeb}
                         className="w-full bg-green-600 hover:bg-green-700 text-white py-3"
                         disabled={!cliente?.telefono}
                       >
                         <MessageSquare className="w-4 h-4 mr-2" />
                         Abrir WhatsApp Web
+                      </Button>
+                      
+                      <Button
+                        onClick={abrirWhatsApp}
+                        className="w-full bg-green-500 hover:bg-green-600 text-white py-3"
+                        disabled={!cliente?.telefono}
+                      >
+                        <MessageSquare className="w-4 h-4 mr-2" />
+                        Abrir WhatsApp Móvil
                       </Button>
                       
                       <Button
@@ -828,6 +899,8 @@ ${domicilioInfo}${esperarMensaje}🙌 ¡Gracias por preferir KeyBox!`;
                             incluirDomicilio: false,
                             tiposDomicilio: [],
                             esperarMasPaquetes: false,
+                            precioTGU: "70",
+                            precioNacional: "125",
                           });
                           setMensajeGenerado("");
                           setCliente(null);
